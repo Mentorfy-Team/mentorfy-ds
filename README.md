@@ -1,7 +1,8 @@
 # Mentorfy.DS
 
-Site de documentação do Design System da Mentorfy — Next.js + Tailwind v4,
-inspirado na estrutura do [Hubber Design System](https://hubber-ds.vercel.app).
+Site de documentação do Design System da Mentorfy — fundações, tokens e
+componentes, em sincronia com a biblioteca do Figma. Construído com Next.js
+e Tailwind v4.
 
 ## Rodando localmente
 
@@ -54,20 +55,17 @@ de um componente Figma. O jeito real de manter design e código alinhados é o
 cada componente do Figma ao componente de código equivalente, e no Dev Mode
 do Figma o time vê o snippet de código real ali do lado do design.
 
-## Publicar no GitHub
+## Repositório
 
-Este diretório já é um repositório git local (sem remote configurado ainda).
-Para conectar a um repositório no GitHub:
+Código versionado em [Mentorfy-Team/mentorfy-ds](https://github.com/Mentorfy-Team/mentorfy-ds).
 
 ```bash
-git add .
-git commit -m "chore: primeira versão do site Mentorfy.DS"
-git branch -M main
-git remote add origin https://github.com/<sua-org>/mentorfy-ds.git
-git push -u origin main
+git clone https://github.com/Mentorfy-Team/mentorfy-ds.git
+cd mentorfy-ds
+npm install
+npm run dev
 ```
 
 ## Deploy
 
-Como é um app Next.js padrão, funciona direto na
-[Vercel](https://vercel.com/new) — mesma hospedagem do Hubber.
+Como é um app Next.js padrão, funciona direto na [Vercel](https://vercel.com/new).
