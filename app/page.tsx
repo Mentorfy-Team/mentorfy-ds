@@ -9,25 +9,25 @@ const sections = [
     href: "/foundations/colors",
   },
   {
-    count: 1,
+    count: 3,
     title: "Base Components",
     description: "Componentes atômicos documentados com variações, estados e props.",
-    items: ["Button"],
+    items: ["Button", "Badge", "Avatar"],
     href: "/components/button",
   },
   {
-    count: 1,
+    count: 3,
     title: "Complex Components",
     description: "Componentes compostos com lógica de interação.",
-    items: ["Input"],
+    items: ["Input", "Card", "Sidebar Item"],
     href: "/components/input",
   },
 ];
 
 const stats = [
-  { value: "2", label: "Componentes" },
+  { value: "6", label: "Componentes" },
   { value: "3", label: "Seções" },
-  { value: "44", label: "Tokens" },
+  { value: "49", label: "Tokens" },
   { value: "v0.1", label: "Versão atual" },
 ];
 
