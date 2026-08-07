@@ -36,17 +36,27 @@ são uma **transcrição manual** das Variables do arquivo Figma "Mentorfy.DS"
 (coleções `Color Primitives`, `Color Semantic`, `Foundations - Size`).
 
 Isso significa: se alguém mudar uma cor no Figma, esse valor **não** atualiza
-aqui automaticamente ainda. O próximo passo do workflow de sincronização é:
+aqui automaticamente ainda.
 
-1. Um script (`scripts/sync-tokens.ts`, a construir) chama a
-   [Figma REST API](https://www.figma.com/developers/api#variables) —
-   endpoint `GET /v1/files/:file_key/variables/local` — usando um token de
-   acesso pessoal do Figma.
-2. O script transforma o JSON de Variables no mesmo formato de
-   `lib/tokens.ts` e regrava `app/globals.css` + `lib/tokens.ts`.
-3. Uma GitHub Action roda esse script (manualmente ou em cron) e abre um PR
-   automático quando os tokens do Figma mudarem — assim toda mudança de
-   token passa por revisão antes de ir pro código.
+**Por que não é 100% automático:** a API REST de Variables do Figma
+(`GET /v1/files/:file_key/variables/local`) só está disponível em planos
+**Enterprise**. Sem isso, não existe um jeito de um servidor/GitHub Action
+puxar as Variables direto do Figma sem intervenção humana.
+
+**Como o sync funciona hoje:** sob demanda, usando a Plugin API do Figma
+(via Figma Desktop + plugin "Desktop Bridge", que funciona em qualquer
+plano). O fluxo é:
+
+1. Abra o arquivo "Mentorfy.DS" no Figma Desktop e rode o plugin Desktop
+   Bridge.
+2. Peça a sincronização (para a Claude, ou rodando a extração das Variables
+   manualmente) — os valores atuais são lidos direto do arquivo Figma.
+3. `app/globals.css` e `lib/tokens.ts` são regravados com os valores
+   atualizados, e o commit/push é feito normalmente.
+
+Não é um cron automático, mas garante que toda atualização passe por uma
+leitura real do arquivo Figma (sem transcrição manual sujeita a erro), e
+pode ser disparada sempre que os tokens mudarem no Figma.
 
 Os componentes (`Button.tsx`, `Input.tsx`) **não** são gerados a partir do
 Figma — não existe uma forma confiável de gerar código de produção a partir

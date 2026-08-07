@@ -2,9 +2,9 @@
 
 /*
   Mentorfy.DS — Design Tokens
-  Fonte da verdade hoje: transcrito manualmente das Variables do Figma
-  (arquivo "Mentorfy.DS", coleções Color Primitives / Color Semantic / Foundations - Size).
-  Próximo passo do pipeline: gerar este bloco automaticamente via Figma REST API.
+  Fonte da verdade: Variables do Figma (arquivo "Mentorfy.DS", coleções
+  Color Primitives / Color Semantic / Foundations - Size), sincronizadas
+  sob demanda via Plugin API (ver README > "De onde vêm os tokens").
 */
 @theme {
   /* ---------- Color Primitives ---------- */
