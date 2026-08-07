@@ -60,10 +60,18 @@ pode ser disparada sempre que os tokens mudarem no Figma.
 
 Os componentes (`Button.tsx`, `Input.tsx`) **não** são gerados a partir do
 Figma — não existe uma forma confiável de gerar código de produção a partir
-de um componente Figma. O jeito real de manter design e código alinhados é o
-[Figma Code Connect](https://www.figma.com/code-connect-docs/): você mapeia
-cada componente do Figma ao componente de código equivalente, e no Dev Mode
-do Figma o time vê o snippet de código real ali do lado do design.
+de um componente Figma. O jeito real de manter design e código alinhados
+seria o [Figma Code Connect](https://www.figma.com/code-connect-docs/): você
+mapeia cada componente do Figma ao componente de código equivalente, e no
+Dev Mode o time vê o snippet de código real ali do lado do design.
+
+**Isso hoje não está disponível no plano atual do Figma** — Code Connect
+exige seat Dev ou Full num plano Organization ou Enterprise, e as contas
+usadas neste projeto são Starter/Pro. Sem isso, a referência entre
+componente Figma e `Button.tsx`/`Input.tsx` é só esta documentação: quem for
+implementar um componente novo deve olhar a página correspondente em
+`app/components/*` e nas páginas do Figma, e manter os dois emparelhados
+manualmente.
 
 ## Repositório
 
