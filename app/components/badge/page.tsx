@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/PageHeader";
-import { Badge, type BadgeColor, type BadgeSize } from "@/components/ui/Badge";
+import { Badge, type BadgeColor, type BadgeSize } from "@brunosantossss/ds";
 
 const colors: BadgeColor[] = ["neutral", "brand", "success", "danger"];
 const sizes: BadgeSize[] = ["sm", "md"];
@@ -15,7 +15,7 @@ export default function BadgePage() {
 
       <div className="rounded-lg border border-line bg-card p-16 mb-32">
         <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto">
-{`import { Badge } from "@/components/ui/Badge";
+{`import { Badge } from "@brunosantossss/ds";
 
 <Badge color="brand" size="sm" dot>Badge</Badge>`}
         </pre>

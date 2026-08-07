@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/PageHeader";
-import { Avatar, type AvatarSize, type AvatarType, type AvatarStatus } from "@/components/ui/Avatar";
+import { Avatar, type AvatarSize, type AvatarType, type AvatarStatus } from "@brunosantossss/ds";
 
 const sizes: AvatarSize[] = ["xs", "sm", "md", "lg"];
 const types: AvatarType[] = ["initials", "placeholder"];
@@ -16,7 +16,7 @@ export default function AvatarPage() {
 
       <div className="rounded-lg border border-line bg-card p-16 mb-32">
         <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto">
-{`import { Avatar } from "@/components/ui/Avatar";
+{`import { Avatar } from "@brunosantossss/ds";
 
 <Avatar size="md" type="initials" status="online" initials="AB" />`}
         </pre>

@@ -2,13 +2,17 @@
   "name": "mentorfy-ds",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run build --workspace=@brunosantossss/ds && next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "@brunosantossss/ds": "*",
     "next": "16.3.0",
     "react": "19.2.8",
     "react-dom": "19.2.8"

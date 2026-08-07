@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/PageHeader";
-import { Input, type InputSize } from "@/components/ui/Input";
+import { Input, type InputSize } from "@brunosantossss/ds";
 
 const sizes: InputSize[] = ["sm", "md", "lg"];
 
@@ -14,7 +14,7 @@ export default function InputPage() {
 
       <div className="rounded-lg border border-line bg-card p-16 mb-32">
         <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto">
-{`import { Input } from "@/components/ui/Input";
+{`import { Input } from "@brunosantossss/ds";
 
 <Input label="Label" placeholder="Placeholder" helperText="Texto de ajuda" />`}
         </pre>

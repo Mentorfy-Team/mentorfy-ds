@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/PageHeader";
-import { SidebarItem } from "@/components/ui/SidebarItem";
+import { SidebarItem } from "@brunosantossss/ds";
 
 const CheckIcon = () => (
   <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
@@ -24,7 +24,7 @@ export default function SidebarItemPage() {
 
       <div className="rounded-lg border border-line bg-card p-16 mb-32">
         <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto">
-{`import { SidebarItem } from "@/components/ui/SidebarItem";
+{`import { SidebarItem } from "@brunosantossss/ds";
 
 <SidebarItem icon={<Icon />} badge={3} active>
   Menu Item

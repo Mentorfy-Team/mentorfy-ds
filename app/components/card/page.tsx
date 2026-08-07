@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/PageHeader";
-import { Card, type CardStyle, type CardPadding } from "@/components/ui/Card";
+import { Card, type CardStyle, type CardPadding } from "@brunosantossss/ds";
 
 const styles: CardStyle[] = ["default", "bordered"];
 const paddings: CardPadding[] = ["sm", "md", "lg"];
@@ -15,7 +15,7 @@ export default function CardPage() {
 
       <div className="rounded-lg border border-line bg-card p-16 mb-32">
         <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto">
-{`import { Card } from "@/components/ui/Card";
+{`import { Card } from "@brunosantossss/ds";
 
 <Card title="Título do Card" footerLabel="Ver mais →">
   Conteúdo do card.

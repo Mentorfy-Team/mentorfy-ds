@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/PageHeader";
-import { Button, type ButtonType, type ButtonSize } from "@/components/ui/Button";
+import { Button, type ButtonType, type ButtonSize } from "@brunosantossss/ds";
 
 const types: ButtonType[] = ["primary", "secondary", "ghost", "danger"];
 const sizes: ButtonSize[] = ["sm", "md", "lg"];
@@ -26,7 +26,7 @@ export default function ButtonPage() {
 
       <div className="rounded-lg border border-line bg-card p-16 mb-8">
         <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto">
-{`import { Button } from "@/components/ui/Button";
+{`import { Button } from "@brunosantossss/ds";
 
 <Button type_="primary" size="md">Button</Button>`}
         </pre>
