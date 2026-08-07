@@ -11,11 +11,19 @@ const nav = [
   },
   {
     group: "Base Components",
-    items: [{ label: "Button", href: "/components/button" }],
+    items: [
+      { label: "Button", href: "/components/button" },
+      { label: "Badge", href: "/components/badge" },
+      { label: "Avatar", href: "/components/avatar" },
+    ],
   },
   {
     group: "Complex Components",
-    items: [{ label: "Input", href: "/components/input" }],
+    items: [
+      { label: "Input", href: "/components/input" },
+      { label: "Card", href: "/components/card" },
+      { label: "Sidebar Item", href: "/components/sidebar-item" },
+    ],
   },
 ];
 
