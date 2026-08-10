@@ -4,7 +4,8 @@ export function Header() {
   return (
     <header className="flex items-center justify-between px-24 py-16 border-b border-line">
       <Link href="/" className="flex items-center gap-12">
-        <span className="text-body-md font-bold text-ink">Mentorfy.DS</span>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/mentorfy-logo.svg" alt="Mentorfy" className="h-[19px] w-auto" />
         <span className="px-8 py-2 rounded-full bg-hover text-body-xs text-ink-muted">v0.1</span>
       </Link>
       <nav className="flex items-center gap-24">
