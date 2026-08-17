@@ -11,7 +11,11 @@ npm install @brunosantossss/ds
 ```
 
 ```tsx
-import { Button, Badge, Avatar, Card, SidebarItem, Input } from "@brunosantossss/ds";
+import {
+  Button, Badge, Avatar, Card, Input,
+  Sidebar, SidebarItem, Switch, Checkbox, Select, Tabs, Modal, Tooltip,
+  Table, TableRow, TableHeaderCell, TableCell,
+} from "@brunosantossss/ds";
 ```
 
 O pacote só entrega componentes — cores, espaçamento e radius vêm de
@@ -54,6 +58,8 @@ packages/ds/            # O pacote publicado (@brunosantossss/ds)
     Avatar.tsx
     Card.tsx
     SidebarItem.tsx
+    Sidebar.tsx, Switch.tsx, Checkbox.tsx, Select.tsx, Tabs.tsx,
+    Modal.tsx, Tooltip.tsx, Table.tsx
     theme.css            # Tokens (bloco @theme do Tailwind v4)
     index.ts              # Barrel export
   package.json
@@ -61,7 +67,7 @@ app/
   foundations/colors/       # Tabela de cores (primitivas + semânticas)
   foundations/typography/   # Escala tipográfica (Display/Text x pesos)
   foundations/spacing/      # Spacing + Radius
-  components/{button,input,badge,avatar,card,sidebar-item}/  # Documentação viva
+  components/{button,input,badge,avatar,card,sidebar-item,sidebar,switch,checkbox,select,tabs,modal,tooltip,table}/  # Documentação viva
 components/ui/
   Button.tsx, Input.tsx...  # Re-exports de @brunosantossss/ds — mantidos só
                              # para não quebrar imports internos do site

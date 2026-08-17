@@ -16,16 +16,16 @@ const sections = [
     href: "/components/button",
   },
   {
-    count: 3,
+    count: 11,
     title: "Complex Components",
     description: "Componentes compostos com lógica de interação.",
-    items: ["Input", "Card", "Sidebar Item"],
+    items: ["Input", "Card", "Sidebar", "Switch", "Checkbox", "Select", "Tabs", "Modal", "Tooltip", "Table"],
     href: "/components/input",
   },
 ];
 
 const stats = [
-  { value: "6", label: "Componentes" },
+  { value: "14", label: "Componentes" },
   { value: "3", label: "Seções" },
   { value: "49", label: "Tokens" },
   { value: "v0.1", label: "Versão atual" },

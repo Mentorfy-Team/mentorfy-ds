@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Build output do pacote @brunosantossss/ds (gerado pelo tsup, não é código-fonte).
+    "packages/*/dist/**",
   ]),
 ]);
 
