@@ -18,41 +18,61 @@ export type ColorFamily = {
 export const colorPrimitives: ColorFamily[] = [
   {
     title: "Neutral",
-    description: "Escala de cinza usada para fundos, textos e bordas em toda a interface.",
+    description: "Escala de cinza (quente) usada para fundos, textos e bordas em toda a interface. Atualizada para a paleta oficial da marca (Pantone Black 4C + Neutral Black C + Warm Gray 5C, 2026).",
     tokens: [
-      { name: "color/neutral/50", value: "#FAFAFA", cssVar: "var(--color-neutral-50)" },
-      { name: "color/neutral/100", value: "#E5E5E5", cssVar: "var(--color-neutral-100)" },
-      { name: "color/neutral/300", value: "#A3A3A3", cssVar: "var(--color-neutral-300)" },
-      { name: "color/neutral/500", value: "#7A7A7A", cssVar: "var(--color-neutral-500)" },
-      { name: "color/neutral/700", value: "#333333", cssVar: "var(--color-neutral-700)" },
-      { name: "color/neutral/800", value: "#262626", cssVar: "var(--color-neutral-800)" },
-      { name: "color/neutral/900", value: "#171717", cssVar: "var(--color-neutral-900)" },
-      { name: "color/neutral/950", value: "#0A0A0A", cssVar: "var(--color-neutral-950)" },
+      { name: "color/neutral/50", value: "#DBD8D4", cssVar: "var(--color-neutral-50)" },   // Secundária — Warm Gray 5C, tint claro
+      { name: "color/neutral/100", value: "#C9C5C0", cssVar: "var(--color-neutral-100)" }, // Secundária — Warm Gray 5C, tint
+      { name: "color/neutral/300", value: "#B8B3AC", cssVar: "var(--color-neutral-300)" }, // Secundária — Warm Gray 5C, tint
+      { name: "color/neutral/500", value: "#A6A098", cssVar: "var(--color-neutral-500)" }, // Secundária — Warm Gray 5C (base)
+      { name: "color/neutral/600", value: "#6F6B6B", cssVar: "var(--color-neutral-600)" }, // Secundária — Neutral Black C, tint claro
+      { name: "color/neutral/700", value: "#575454", cssVar: "var(--color-neutral-700)" }, // Secundária — Neutral Black C, tint
+      { name: "color/neutral/800", value: "#3F3C3C", cssVar: "var(--color-neutral-800)" }, // Secundária — Neutral Black C, tint
+      { name: "color/neutral/900", value: "#1A1009", cssVar: "var(--color-neutral-900)" }, // Primária — Pantone Black 4C (base)
+      { name: "color/neutral/950", value: "#0D0804", cssVar: "var(--color-neutral-950)" }, // Secundária — Neutral Black C (base)
     ],
   },
   {
     title: "Orange",
-    description: "Cor primária da marca Mentorfy, usada em ações principais e destaques.",
+    description: "Cor primária da marca Mentorfy, usada em ações principais e destaques. Base atualizada para Pantone 6018 C; 700/900 usam os tons de apoio (Pantone Black 4C / 2319 C) da paleta oficial 2026.",
     tokens: [
-      { name: "color/orange/50", value: "#FDF1E7", cssVar: "var(--color-orange-50)" },
-      { name: "color/orange/100", value: "#FBDFC5", cssVar: "var(--color-orange-100)" },
-      { name: "color/orange/300", value: "#F5B583", cssVar: "var(--color-orange-300)" },
-      { name: "color/orange/500", value: "#EE843D", cssVar: "var(--color-orange-500)" },
-      { name: "color/orange/700", value: "#B85F27", cssVar: "var(--color-orange-700)" },
-      { name: "color/orange/900", value: "#3A2115", cssVar: "var(--color-orange-900)" },
+      { name: "color/orange/50", value: "#FDF1E7", cssVar: "var(--color-orange-50)" },   // legado — não faz parte da paleta oficial 2026
+      { name: "color/orange/100", value: "#FBDFC5", cssVar: "var(--color-orange-100)" }, // legado — não faz parte da paleta oficial 2026
+      { name: "color/orange/300", value: "#F5B583", cssVar: "var(--color-orange-300)" }, // legado — não faz parte da paleta oficial 2026
+      { name: "color/orange/500", value: "#F27C39", cssVar: "var(--color-orange-500)" }, // Primária — Pantone 6018 C (base)
+      { name: "color/orange/700", value: "#1A1009", cssVar: "var(--color-orange-700)" }, // Primária — Pantone Black 4C (tom de apoio, hover)
+      { name: "color/orange/900", value: "#905A34", cssVar: "var(--color-orange-900)" }, // Primária — Pantone 2319 C (tom de apoio, chip de ícone)
+    ],
+  },
+  {
+    title: "Teal",
+    description: "Verde-petróleo (Pantone 4168 C) — nova cor de destaque da paleta oficial 2026. Ainda não aplicada a nenhum componente ou tela existente; disponível para uso futuro.",
+    tokens: [
+      { name: "color/teal/300", value: "#488783", cssVar: "var(--color-teal-300)" }, // Secundária — Pantone 4168 C, tint claro
+      { name: "color/teal/500", value: "#103F3C", cssVar: "var(--color-teal-500)" }, // Secundária — Pantone 4168 C (base)
+      { name: "color/teal/700", value: "#306F6B", cssVar: "var(--color-teal-700)" }, // Secundária — Pantone 4168 C, tint escuro
+      { name: "color/teal/900", value: "#01100F", cssVar: "var(--color-teal-900)" }, // Secundária — Pantone 4168 C, tint mais escuro
+    ],
+  },
+  {
+    title: "Brown",
+    description: "Tons de apoio da marca (Pantone 2319 C) — paleta oficial 2026. Ainda não aplicados a nenhum componente existente.",
+    tokens: [
+      { name: "color/brown/300", value: "#A38A79", cssVar: "var(--color-brown-300)" }, // Primária — tom de apoio (Pantone 2319 C), tint claro
+      { name: "color/brown/500", value: "#755B48", cssVar: "var(--color-brown-500)" }, // Primária — tom de apoio (Pantone 2319 C), tint médio
+      { name: "color/brown/700", value: "#473222", cssVar: "var(--color-brown-700)" }, // Primária — tom de apoio (Pantone 2319 C), tint escuro
     ],
   },
   {
     title: "Green",
     description: "Usado para indicar sucesso e status online.",
-    tokens: [{ name: "color/green/500", value: "#4CAF6E", cssVar: "var(--color-green-500)" }],
+    tokens: [{ name: "color/green/500", value: "#4CAF6E", cssVar: "var(--color-green-500)" }], // não faz parte da paleta oficial 2026
   },
   {
     title: "Red",
     description: "Usado para ações destrutivas e mensagens de erro.",
     tokens: [
-      { name: "color/red/500", value: "#EF4444", cssVar: "var(--color-red-500)" },
-      { name: "color/red/700", value: "#B91C1C", cssVar: "var(--color-red-700)" },
+      { name: "color/red/500", value: "#EF4444", cssVar: "var(--color-red-500)" }, // não faz parte da paleta oficial 2026
+      { name: "color/red/700", value: "#B91C1C", cssVar: "var(--color-red-700)" }, // não faz parte da paleta oficial 2026
     ],
   },
 ];
@@ -62,44 +82,49 @@ export const colorSemantic: ColorFamily[] = [
     title: "Background",
     description: "Cores de fundo para superfícies da interface.",
     tokens: [
-      { name: "bg/page", value: "#171717", cssVar: "var(--color-page)" },
-      { name: "bg/surface", value: "#171717", cssVar: "var(--color-surface)" },
-      { name: "bg/card", value: "#0A0A0A", cssVar: "var(--color-card)" },
-      { name: "bg/hover", value: "#262626", cssVar: "var(--color-hover)" },
-      { name: "bg/hover-strong", value: "#333333", cssVar: "var(--color-hover-strong)" },
-      { name: "bg/brand-subtle", value: "#3A2115", cssVar: "var(--color-brand-subtle)" },
+      { name: "bg/page", value: "#1A1009", cssVar: "var(--color-page)" },
+      { name: "bg/surface", value: "#1A1009", cssVar: "var(--color-surface)" },
+      { name: "bg/card", value: "#0D0804", cssVar: "var(--color-card)" },
+      { name: "bg/hover", value: "#3F3C3C", cssVar: "var(--color-hover)" }, // Secundária — Neutral Black C, tint
+      { name: "bg/hover-strong", value: "#575454", cssVar: "var(--color-hover-strong)" }, // Secundária — Neutral Black C, tint
+      { name: "bg/brand-subtle", value: "#905A34", cssVar: "var(--color-brand-subtle)" }, // Primária — Pantone 2319 C
     ],
   },
   {
     title: "Text",
     description: "Cores de texto para diferentes níveis de ênfase.",
     tokens: [
-      { name: "text/primary", value: "#FAFAFA", cssVar: "var(--color-ink)" },
-      { name: "text/secondary", value: "#7A7A7A", cssVar: "var(--color-ink-muted)" },
-      { name: "text/brand", value: "#EE843D", cssVar: "var(--color-ink-brand)" },
+      { name: "text/primary", value: "#DBD8D4", cssVar: "var(--color-ink)" }, // Secundária — Warm Gray 5C, tint claro
+      { name: "text/secondary", value: "#A6A098", cssVar: "var(--color-ink-muted)" }, // Secundária — Warm Gray 5C (base)
+      { name: "text/brand", value: "#F27C39", cssVar: "var(--color-ink-brand)" }, // Primária — Pantone 6018 C
     ],
   },
   {
     title: "Border",
-    description: "Cor de borda padrão para cards, inputs e divisores.",
-    tokens: [{ name: "border/default", value: "#262626", cssVar: "var(--color-line)" }],
+    description: "Cor de borda padrão para cards, inputs e divisores. Agora com tom próprio (Pantone Neutral Black C, tint), separado do bg/hover.",
+    tokens: [{ name: "border/default", value: "#6F6B6B", cssVar: "var(--color-line)" }], // Secundária — Neutral Black C, tint
   },
   {
     title: "Brand",
     description: "Cor de ação primária da marca e seu estado de hover.",
     tokens: [
-      { name: "brand/primary", value: "#EE843D", cssVar: "var(--color-brand)" },
-      { name: "brand/primary-hover", value: "#B85F27", cssVar: "var(--color-brand-hover)" },
+      { name: "brand/primary", value: "#F27C39", cssVar: "var(--color-brand)" }, // Primária — Pantone 6018 C
+      { name: "brand/primary-hover", value: "#1A1009", cssVar: "var(--color-brand-hover)" }, // Primária — Pantone Black 4C
     ],
   },
   {
     title: "Status",
     description: "Cores de feedback para sucesso e erros.",
     tokens: [
-      { name: "status/success", value: "#4CAF6E", cssVar: "var(--color-success)" },
-      { name: "status/danger", value: "#EF4444", cssVar: "var(--color-danger)" },
-      { name: "status/danger-hover", value: "#B91C1C", cssVar: "var(--color-danger-hover)" },
+      { name: "status/success", value: "#4CAF6E", cssVar: "var(--color-success)" }, // não faz parte da paleta oficial 2026
+      { name: "status/danger", value: "#EF4444", cssVar: "var(--color-danger)" }, // não faz parte da paleta oficial 2026
+      { name: "status/danger-hover", value: "#B91C1C", cssVar: "var(--color-danger-hover)" }, // não faz parte da paleta oficial 2026
     ],
+  },
+  {
+    title: "Accent",
+    description: "Nova cor de destaque da paleta oficial 2026 (Pantone 4168 C). Ainda não aplicada às telas existentes.",
+    tokens: [{ name: "accent/teal", value: "#103F3C", cssVar: "var(--color-accent-teal)" }], // Secundária — Pantone 4168 C
   },
 ];
 
