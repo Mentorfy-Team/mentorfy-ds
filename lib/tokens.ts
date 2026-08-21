@@ -39,7 +39,7 @@ export const colorPrimitives: ColorFamily[] = [
       { name: "color/orange/100", value: "#FBDFC5", cssVar: "var(--color-orange-100)" }, // legado — não faz parte da paleta oficial 2026
       { name: "color/orange/300", value: "#F5B583", cssVar: "var(--color-orange-300)" }, // legado — não faz parte da paleta oficial 2026
       { name: "color/orange/500", value: "#F27C39", cssVar: "var(--color-orange-500)" }, // Primária — Pantone 6018 C (base)
-      { name: "color/orange/700", value: "#1A1009", cssVar: "var(--color-orange-700)" }, // Primária — Pantone Black 4C (tom de apoio, hover)
+      { name: "color/orange/700", value: "#905A34", cssVar: "var(--color-orange-700)" }, // Primária — Pantone 2319 C (tom de apoio, hover) — ajustado para manter contraste com texto escuro
       { name: "color/orange/900", value: "#905A34", cssVar: "var(--color-orange-900)" }, // Primária — Pantone 2319 C (tom de apoio, chip de ícone)
     ],
   },
@@ -87,7 +87,7 @@ export const colorSemantic: ColorFamily[] = [
       { name: "bg/card", value: "#0D0804", cssVar: "var(--color-card)" },
       { name: "bg/hover", value: "#3F3C3C", cssVar: "var(--color-hover)" }, // Secundária — Neutral Black C, tint
       { name: "bg/hover-strong", value: "#575454", cssVar: "var(--color-hover-strong)" }, // Secundária — Neutral Black C, tint
-      { name: "bg/brand-subtle", value: "#905A34", cssVar: "var(--color-brand-subtle)" }, // Primária — Pantone 2319 C
+      { name: "bg/brand-subtle", value: "#473222", cssVar: "var(--color-brand-subtle)" }, // Primária — tom de apoio (Pantone 2319 C), tint escuro — repontado de orange/900 para melhorar contraste de Badge/Avatar/Button ghost-hover
     ],
   },
   {
@@ -97,6 +97,7 @@ export const colorSemantic: ColorFamily[] = [
       { name: "text/primary", value: "#DBD8D4", cssVar: "var(--color-ink)" }, // Secundária — Warm Gray 5C, tint claro
       { name: "text/secondary", value: "#A6A098", cssVar: "var(--color-ink-muted)" }, // Secundária — Warm Gray 5C (base)
       { name: "text/brand", value: "#F27C39", cssVar: "var(--color-ink-brand)" }, // Primária — Pantone 6018 C
+      { name: "text/on-brand", value: "#1A1009", cssVar: "var(--color-ink-on-brand)" }, // Primária — Pantone Black 4C — texto escuro para uso sobre fundos saturados da marca (ex: Button primary); corrige contraste após a atualização de paleta
     ],
   },
   {
@@ -109,7 +110,7 @@ export const colorSemantic: ColorFamily[] = [
     description: "Cor de ação primária da marca e seu estado de hover.",
     tokens: [
       { name: "brand/primary", value: "#F27C39", cssVar: "var(--color-brand)" }, // Primária — Pantone 6018 C
-      { name: "brand/primary-hover", value: "#1A1009", cssVar: "var(--color-brand-hover)" }, // Primária — Pantone Black 4C
+      { name: "brand/primary-hover", value: "#905A34", cssVar: "var(--color-brand-hover)" }, // Primária — Pantone 2319 C — ajustado de Pantone Black 4C para manter contraste com texto escuro
     ],
   },
   {

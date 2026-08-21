@@ -10,7 +10,9 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const typeStyles: Record<ButtonType, string> = {
-  primary: "bg-brand text-ink hover:bg-brand-hover",
+  // text-ink-on-brand (escuro): bg-brand/bg-brand-hover são cores saturadas
+  // (orange/500 e orange/700), onde texto claro (text-ink) perde contraste.
+  primary: "bg-brand text-ink-on-brand hover:bg-brand-hover",
   secondary: "bg-hover text-ink hover:bg-hover-strong",
   ghost: "bg-transparent text-ink-brand hover:bg-brand-subtle",
   danger: "bg-danger text-ink hover:bg-danger-hover",

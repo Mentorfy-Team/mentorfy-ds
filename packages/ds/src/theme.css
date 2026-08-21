@@ -28,7 +28,7 @@
   --color-orange-100: #FBDFC5; /* legado — não faz parte da paleta oficial 2026 */
   --color-orange-300: #F5B583; /* legado — não faz parte da paleta oficial 2026 */
   --color-orange-500: #F27C39; /* Primária — Pantone 6018 C (base) */
-  --color-orange-700: #1A1009; /* Primária — Pantone Black 4C (tom de apoio, hover) */
+  --color-orange-700: #905A34; /* Primária — Pantone 2319 C (tom de apoio, hover) — ajustado de Pantone Black 4C para manter contraste com texto escuro */
   --color-orange-900: #905A34; /* Primária — Pantone 2319 C (tom de apoio, chip de ícone) */
 
   --color-green-500: #4CAF6E; /* não faz parte da paleta oficial 2026 — cor de status, inalterada */
@@ -58,16 +58,17 @@
   --color-card: var(--color-neutral-950); /* Secundária — Neutral Black C */
   --color-hover: var(--color-neutral-800); /* Secundária — Neutral Black C, tint */
   --color-hover-strong: var(--color-neutral-700); /* Secundária — Neutral Black C, tint */
-  --color-brand-subtle: var(--color-orange-900); /* Primária — Pantone 2319 C */
+  --color-brand-subtle: var(--color-brown-700); /* Primária — tom de apoio compartilhado (Pantone 2319 C), tint escuro — repontado de orange/900 para melhorar contraste de Badge/Avatar/Button ghost-hover */
 
   --color-line: var(--color-neutral-600); /* Secundária — Neutral Black C, tint */
 
   --color-ink: var(--color-neutral-50); /* Secundária — Warm Gray 5C, tint claro */
   --color-ink-muted: var(--color-neutral-500); /* Secundária — Warm Gray 5C (base) */
   --color-ink-brand: var(--color-orange-500); /* Primária — Pantone 6018 C */
+  --color-ink-on-brand: var(--color-neutral-900); /* Primária — Pantone Black 4C — texto escuro para uso sobre fundos saturados da marca (ex: Button primary), corrige contraste após a atualização de paleta */
 
   --color-brand: var(--color-orange-500); /* Primária — Pantone 6018 C */
-  --color-brand-hover: var(--color-orange-700); /* Primária — Pantone Black 4C */
+  --color-brand-hover: var(--color-orange-700); /* Primária — Pantone 2319 C */
 
   --color-success: var(--color-green-500); /* não faz parte da paleta oficial 2026 */
   --color-danger: var(--color-red-500); /* não faz parte da paleta oficial 2026 */
