@@ -8,7 +8,7 @@ function DemoNav() {
     <>
       <SidebarItem active>Dashboard</SidebarItem>
       <SidebarItem badge={5}>Mentorias</SidebarItem>
-      <SidebarItem>Alunos</SidebarItem>
+      <SidebarItem expandable expanded>Alunos</SidebarItem>
       <SidebarSubmenu>
         <SidebarItem className="text-body-sm">Turmas</SidebarItem>
         <SidebarItem className="text-body-sm">Certificados</SidebarItem>
@@ -35,6 +35,7 @@ export default function SidebarPage() {
 <Sidebar footer={<UserFooter />}>
   <SidebarItem active icon={<DashboardIcon />}>Dashboard</SidebarItem>
   <SidebarItem badge={5} icon={<ChatIcon />}>Mentorias</SidebarItem>
+  <SidebarItem expandable expanded icon={<UsersIcon />}>Alunos</SidebarItem>
   <SidebarSubmenu>
     <SidebarItem>Turmas</SidebarItem>
   </SidebarSubmenu>
