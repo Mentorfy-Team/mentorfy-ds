@@ -357,7 +357,7 @@ export default function TablePage() {
           <code className="text-body-xs font-mono text-ink">sm</code> em painéis laterais ou listagens compactas.
         </p>
         <div className="rounded-lg border border-line-subtle overflow-hidden">
-          <table className="w-full border-collapse">
+          <table className="w-full border-collapse [&_tbody_tr:last-child>td]:border-b-0">
             <tbody>
               {(["lg", "md", "sm"] as const).map((size) => (
                 <tr key={size}>
@@ -386,7 +386,7 @@ export default function TablePage() {
           valores numéricos.
         </p>
         <div className="rounded-lg border border-line-subtle overflow-hidden">
-          <table className="w-full border-collapse">
+          <table className="w-full border-collapse [&_tbody_tr:last-child>td]:border-b-0">
             <tbody>
               <tr>
                 <TableCell align="left">
@@ -426,7 +426,7 @@ export default function TablePage() {
           adicionado por ser um recurso comum de tabela real, sem mudar a aparência das colunas não-ordenáveis.
         </p>
         <div className="rounded-lg border border-line-subtle overflow-hidden mb-16">
-          <table className="w-full border-collapse">
+          <table className="w-full border-collapse [&_tbody_tr:last-child>td]:border-b-0">
             <thead>
               <tr>
                 <TableHeaderCell className="w-48" align="center">
@@ -516,7 +516,7 @@ export default function TablePage() {
           Cell&quot; e &quot;Table Header Cell&quot;).
         </p>
         <div className="rounded-lg border border-line-subtle bg-card p-24 mb-16 flex justify-center overflow-x-auto">
-          <svg width="640" height="260" viewBox="0 0 640 260" fontFamily="var(--font-sans)">
+          <svg width="640" height="285" viewBox="0 0 640 285" fontFamily="var(--font-sans)">
             {/* Header cell */}
             <rect x="40" y="20" width="220" height="44" fill="var(--color-table-line)" stroke="var(--color-table-line)" />
             <text x="56" y="46" fontSize="12" fontWeight="700" fill="var(--color-ink)" fontFamily="ui-monospace, monospace">
@@ -760,7 +760,7 @@ export default function TablePage() {
         <h2 className="text-body-xl font-bold mb-16">Dos &amp; Don&apos;ts</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           <DoCard title="Use o mesmo size em todas as linhas" description="Altura consistente garante alinhamento entre colunas e facilita o escaneamento da tabela.">
-            <table className="w-full border-collapse">
+            <table className="w-full border-collapse [&_tbody_tr:last-child>td]:border-b-0">
               <tbody>
                 {alunos.slice(0, 2).map((s) => (
                   <tr key={s.name}>
@@ -774,7 +774,7 @@ export default function TablePage() {
             </table>
           </DoCard>
           <DontCard title="Não misture tamanhos de célula" description="Alturas alternadas criam desalinhamento visual e tornam a tabela difícil de escanear.">
-            <table className="w-full border-collapse">
+            <table className="w-full border-collapse [&_tbody_tr:last-child>td]:border-b-0">
               <tbody>
                 <tr>
                   <TableCell size="lg">
@@ -792,7 +792,7 @@ export default function TablePage() {
             </table>
           </DontCard>
           <DoCard title="Centralize controls como checkbox, switch e radio" description="Elementos interativos centralizados ficam visualmente equilibrados e com área de clique mais generosa.">
-            <table className="w-full border-collapse">
+            <table className="w-full border-collapse [&_tbody_tr:last-child>td]:border-b-0">
               <tbody>
                 <tr>
                   <TableCell align="center">
@@ -803,7 +803,7 @@ export default function TablePage() {
             </table>
           </DoCard>
           <DontCard title="Não sobrecarregue uma célula com elementos demais" description="Mais de dois elementos distintos por célula prejudica a legibilidade. Prefira dividir em colunas separadas.">
-            <table className="w-full border-collapse">
+            <table className="w-full border-collapse [&_tbody_tr:last-child>td]:border-b-0">
               <tbody>
                 <tr>
                   <TableCell>

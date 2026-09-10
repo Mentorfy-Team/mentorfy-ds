@@ -37,7 +37,17 @@ export function Table({ className = "", children, ...props }: TableProps) {
     // com o conteúdo das linhas. Ver definição de --color-line-subtle em
     // theme.css.
     <div className="overflow-x-auto overflow-y-hidden rounded-lg border border-line-subtle bg-card">
-      <table className={`w-full min-w-max border-collapse text-body-sm ${className}`} {...props}>
+      {/* [&_tbody_tr:last-child>td]: remove a borda inferior só da ÚLTIMA
+          LINHA (pro fim da tabela não ficar com uma divisória redundante
+          colada no rounded-lg do wrapper). Isso fica no <table>, não na
+          TableCell, porque `last:` numa td sozinha mira o último FILHO do
+          <tr> — ou seja, a última COLUNA de toda linha — e não a última
+          linha da tabela. Era esse o bug: a divisória sumia embaixo da
+          coluna mais à direita em toda linha, em vez de só na última. */}
+      <table
+        className={`w-full min-w-max border-collapse text-body-sm [&_tbody_tr:last-child>td]:border-b-0 ${className}`}
+        {...props}
+      >
         {children}
       </table>
     </div>
@@ -46,7 +56,11 @@ export function Table({ className = "", children, ...props }: TableProps) {
 
 export type TableRowProps = HTMLAttributes<HTMLTableRowElement>;
 export function TableRow({ className = "", ...props }: TableRowProps) {
-  return <tr className={`transition-colors hover:bg-hover/60 ${className}`} {...props} />;
+  // bg-surface (preto levemente mais claro que o --color-card de fundo da
+  // Table, ambos derivados de neutral-900/950) em vez do antigo bg-hover
+  // (neutral-800, um cinza mais claro e menos discreto): o hover da linha
+  // deve ser uma variação sutil de preto, não um destaque cinza chamativo.
+  return <tr className={`transition-colors hover:bg-surface ${className}`} {...props} />;
 }
 
 export interface TableHeaderCellProps extends ThHTMLAttributes<HTMLTableCellElement> {
@@ -104,7 +118,7 @@ export interface TableCellProps extends TdHTMLAttributes<HTMLTableCellElement> {
 export function TableCell({ align = "left", size = "md", className = "", children, ...props }: TableCellProps) {
   return (
     <td
-      className={`border-b border-table-line px-16 text-ink last:border-b-0 ${rowHeight[size]} ${className}`}
+      className={`border-b border-table-line px-16 text-ink ${rowHeight[size]} ${className}`}
       {...props}
     >
       <div className={`flex h-full items-center gap-8 ${justifyClass[align]}`}>{children}</div>
