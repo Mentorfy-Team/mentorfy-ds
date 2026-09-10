@@ -126,5 +126,14 @@
   --text-body-xs: 12px;
   --text-body-xs--line-height: 150%;
 
-  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  /* DM Sans é a fonte real usada em todos os componentes do produto (Figma).
+     var(--font-dm-sans) é definida pelo app consumidor via next/font
+     (ver app/layout.tsx) — sem isso, cai no fallback Inter. */
+  --font-sans: var(--font-dm-sans), Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Cinza frio usado só na sidebar (labels de grupo, caret, itens de
+     rodapé "Tutoriais"/"Precisa de ajuda") — valor direto no Figma,
+     não vinculado a nenhuma variável lá, por isso não é um alias de
+     color/neutral/*. */
+  --color-nav-muted: #7a7a7a;
 }

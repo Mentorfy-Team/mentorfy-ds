@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/PageHeader";
-import { Sidebar, SidebarSubmenu, SidebarGroupLabel, SidebarItem, Avatar } from "@brunosantossss/ds";
+import { Sidebar, SidebarGroupLabel, SidebarItem, Avatar } from "@brunosantossss/ds";
 import {
   PainelIcon,
   AlunosIcon,
@@ -29,21 +29,20 @@ import {
 } from "./icons";
 
 // Espelha a IA real da sidebar do produto (página "❖ · Sidebar" no Bússola.DS):
-// mesmos grupos, mesmos itens, mesmo item ativo ("Indicações") e mesmos ícones
-// (extraídos vetor por vetor do Figma). Só os nomes/dados de exemplo (avatar,
-// usuário) seguem placeholder, já que dependem da sessão real da aplicação.
+// mesmos grupos, mesmos itens, mesmo item ativo ("Indicações"), mesmo estado
+// padrão (Alunos fechado — o Figma real não mostra o submenu aberto) e mesmos
+// ícones (extraídos vetor por vetor do Figma). Só os nomes/dados de exemplo
+// (avatar, usuário) seguem placeholder, já que dependem da sessão real da
+// aplicação. <SidebarSubmenu> existe e pode ser usado quando `expanded` for
+// true — só não é o estado padrão desta demo, pra bater 1:1 com o Figma.
 function DemoNavTop() {
   return (
     <>
       <SidebarGroupLabel>Gestão</SidebarGroupLabel>
       <SidebarItem icon={<PainelIcon />}>Painel</SidebarItem>
-      <SidebarItem icon={<AlunosIcon />} expandable expanded>
+      <SidebarItem icon={<AlunosIcon />} expandable>
         Alunos
       </SidebarItem>
-      <SidebarSubmenu>
-        <SidebarItem className="text-body-sm">Turmas</SidebarItem>
-        <SidebarItem className="text-body-sm">Certificados</SidebarItem>
-      </SidebarSubmenu>
       <SidebarItem icon={<RelatoriosIcon />}>Relatórios</SidebarItem>
       <SidebarItem icon={<ReunioesIcon />}>Reuniões</SidebarItem>
       <SidebarItem icon={<IndicacoesIcon />} active>
@@ -93,10 +92,8 @@ export default function SidebarPage() {
 <Sidebar footer={<UserFooter />}>
   <SidebarGroupLabel>Gestão</SidebarGroupLabel>
   <SidebarItem icon={<PainelIcon />}>Painel</SidebarItem>
-  <SidebarItem icon={<AlunosIcon />} expandable expanded>Alunos</SidebarItem>
-  <SidebarSubmenu>
-    <SidebarItem>Turmas</SidebarItem>
-  </SidebarSubmenu>
+  <SidebarItem icon={<AlunosIcon />} expandable>Alunos</SidebarItem>
+  {/* expanded (com <SidebarSubmenu> logo depois) quando o usuário abrir */}
   <SidebarItem icon={<IndicacoesIcon />} active>Indicações</SidebarItem>
 </Sidebar>`}
         </pre>
@@ -108,54 +105,64 @@ export default function SidebarPage() {
           <div className="h-[720px] overflow-hidden rounded-lg border border-line">
             <Sidebar
               header={
-                <div className="flex items-center justify-between">
+                <div className="flex w-full items-center justify-between">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/mentorfy-logo.svg" alt="Mentorfy" className="h-[19px] w-auto" />
-                  <button type="button" className="text-ink-muted hover:text-ink transition-colors" aria-label="Fechar">
+                  <button
+                    type="button"
+                    className="flex h-[28px] w-[28px] items-center justify-center rounded-md text-ink-muted transition-colors hover:bg-hover hover:text-ink"
+                    aria-label="Fechar"
+                  >
                     <CloseIcon />
                   </button>
                 </div>
               }
               footer={
-                <div className="flex items-center gap-12">
+                <div className="flex w-full items-center gap-12">
                   <Avatar size="sm" initials="CM" status="online" />
-                  <div className="flex flex-col flex-1">
+                  <div className="flex flex-1 flex-col">
                     <span className="text-body-sm font-medium">Carlos Mentor</span>
                     <span className="text-body-xs text-ink-muted">Mentor Pro</span>
                   </div>
-                  <CollapseIcon className="text-ink-muted" />
+                  <button
+                    type="button"
+                    className="flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-md text-ink-muted transition-colors hover:bg-hover hover:text-ink"
+                    aria-label="Recolher"
+                  >
+                    <CollapseIcon />
+                  </button>
                 </div>
               }
             >
               <DemoNavTop />
-              <SidebarGroupLabel>Mentorias</SidebarGroupLabel>
+              <SidebarGroupLabel className="mt-14">Mentorias</SidebarGroupLabel>
               <SidebarItem icon={<MeusProdutosIcon />}>Meus Produtos</SidebarItem>
               <SidebarItem icon={<VitrineIcon />}>Vitrine</SidebarItem>
               <SidebarItem icon={<AprovacoesIcon />}>Aprovações</SidebarItem>
-              <SidebarGroupLabel>Clientes</SidebarGroupLabel>
+              <SidebarGroupLabel className="mt-14">Clientes</SidebarGroupLabel>
               <SidebarItem icon={<MeusClientesIcon />}>Meus Clientes</SidebarItem>
               <SidebarItem icon={<GruposIcon />}>Grupos</SidebarItem>
-              <SidebarGroupLabel>AI Studio</SidebarGroupLabel>
+              <SidebarGroupLabel className="mt-14">AI Studio</SidebarGroupLabel>
               <SidebarItem icon={<AiStudioIcon />}>AI Studio</SidebarItem>
-              <SidebarGroupLabel>Brand Studio</SidebarGroupLabel>
+              <SidebarGroupLabel className="mt-14">Brand Studio</SidebarGroupLabel>
               <SidebarItem icon={<BrandStudioIcon />}>Brand Studio</SidebarItem>
-              <SidebarGroupLabel>Copiloto</SidebarGroupLabel>
+              <SidebarGroupLabel className="mt-14">Copiloto</SidebarGroupLabel>
               <SidebarItem icon={<MeuCopilotoIcon />}>Meu Copiloto</SidebarItem>
               <SidebarItem icon={<CopilotoDoAlunoIcon />}>Copiloto do Aluno</SidebarItem>
-              <SidebarGroupLabel>Configurações</SidebarGroupLabel>
+              <SidebarGroupLabel className="mt-14">Configurações</SidebarGroupLabel>
               <SidebarItem icon={<EquipeIcon />}>Equipe</SidebarItem>
               <SidebarItem icon={<DominioIcon />}>Domínio</SidebarItem>
               <SidebarItem icon={<IntegracoesIcon />}>Integrações</SidebarItem>
               <SidebarItem icon={<SegurancaIcon />}>Segurança</SidebarItem>
-              <SidebarGroupLabel>Minha Conta</SidebarGroupLabel>
+              <SidebarGroupLabel className="mt-14">Minha Conta</SidebarGroupLabel>
               <SidebarItem icon={<PerfilIcon />}>Perfil</SidebarItem>
               <SidebarItem icon={<SenhaIcon />}>Senha</SidebarItem>
               <SidebarItem icon={<AssinaturaIcon />}>Assinatura</SidebarItem>
-              <div className="mt-auto border-t border-line pt-8 flex flex-col gap-4">
-                <SidebarItem icon={<TutoriaisIcon />} className="text-ink-muted">
+              <div className="mt-auto flex flex-col gap-0 border-t border-line pt-12">
+                <SidebarItem icon={<TutoriaisIcon />} className="text-nav-muted">
                   Tutoriais
                 </SidebarItem>
-                <SidebarItem icon={<PrecisaDeAjudaIcon />} className="text-ink-muted">
+                <SidebarItem icon={<PrecisaDeAjudaIcon />} className="text-nav-muted">
                   Precisa de ajuda?
                 </SidebarItem>
               </div>

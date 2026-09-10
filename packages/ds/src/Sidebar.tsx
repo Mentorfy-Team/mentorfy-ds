@@ -22,9 +22,9 @@ export function Sidebar({ collapsed = false, header, footer, children, className
         collapsed ? "w-[88px]" : "w-[280px]"
       } ${className}`}
     >
-      {header && <div className="border-b border-line p-16">{header}</div>}
-      <nav className="flex flex-1 flex-col gap-4 overflow-y-auto p-12">{children}</nav>
-      {footer && <div className="border-t border-line p-16">{footer}</div>}
+      {header && <div className="flex h-[64px] shrink-0 items-center border-b border-line px-24">{header}</div>}
+      <nav className="flex flex-1 flex-col gap-0 overflow-y-auto p-12">{children}</nav>
+      {footer && <div className="flex h-[72px] shrink-0 items-center border-t border-line px-20">{footer}</div>}
     </aside>
   );
 }
@@ -50,7 +50,7 @@ export interface SidebarGroupLabelProps {
  */
 export function SidebarGroupLabel({ children, className = "" }: SidebarGroupLabelProps) {
   return (
-    <p className={`px-8 pt-4 pb-6 text-[11px] font-bold uppercase tracking-[0.06em] text-ink-muted ${className}`}>
+    <p className={`px-8 pt-4 pb-6 text-[11px] font-bold uppercase tracking-[1.2px] text-nav-muted ${className}`}>
       {children}
     </p>
   );

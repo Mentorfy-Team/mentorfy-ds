@@ -41,7 +41,7 @@ export function SidebarItem({
     <button
       type="button"
       disabled={disabled}
-      className={`relative flex w-full items-center gap-8 rounded-md py-8 pl-12 pr-12 text-body-sm font-medium transition-colors disabled:opacity-40 disabled:pointer-events-none ${
+      className={`relative flex h-[40px] w-full shrink-0 items-center gap-8 rounded-md pl-12 pr-12 text-body-sm font-medium transition-colors disabled:opacity-40 disabled:pointer-events-none ${
         active ? "bg-surface text-ink-brand" : "text-ink hover:bg-hover"
       } ${className}`}
       {...props}
@@ -57,7 +57,7 @@ export function SidebarItem({
           height="6"
           viewBox="0 0 10 5"
           fill="none"
-          className={`shrink-0 text-ink-muted transition-transform ${expanded ? "rotate-180" : ""}`}
+          className={`shrink-0 text-nav-muted transition-transform ${expanded ? "rotate-180" : ""}`}
           aria-hidden="true"
         >
           <path d="M0.835 0.835L5 4.165L9.165 0.835" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
