@@ -73,6 +73,14 @@
      próprio: nav-line é escopado à Sidebar, este aqui é de uso geral. */
   --color-line-subtle: #1e1e1e;
 
+  /* Extraído direto do Figma (Table Cell / Table Header Cell, valor #262626
+     não vinculado a nenhuma variável lá — igual ao caso de --color-nav):
+     serve três papéis na Table — divisória entre linhas, fundo do
+     TableHeaderCell e fundo dos botões-ícone dentro de uma célula (Type
+     Button/Button Group) — os três usam exatamente esse mesmo valor no
+     arquivo, por isso um único token em vez de três. */
+  --color-table-line: #262626;
+
   --color-ink: var(--color-neutral-50); /* Secundária — Warm Gray 5C, tint claro */
   --color-ink-muted: var(--color-neutral-500); /* Secundária — Warm Gray 5C (base) */
   --color-ink-brand: var(--color-orange-500); /* Primária — Pantone 6018 C */

@@ -3,12 +3,15 @@ import { HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from "react";
 export type CellAlign = "left" | "center" | "right";
 export type CellSize = "sm" | "md" | "lg";
 
-const alignClass: Record<CellAlign, string> = {
-  left: "text-left",
-  center: "text-center",
-  right: "text-right",
+const justifyClass: Record<CellAlign, string> = {
+  left: "justify-start text-left",
+  center: "justify-center text-center",
+  right: "justify-end text-right",
 };
 
+// Alturas extraídas direto do Figma (component set "Table Cell", eixo
+// Size): 48/56/64px — o texto do conteúdo (ex: Lead) fica no mesmo
+// tamanho (14px) nos três, só a altura da célula muda.
 const rowHeight: Record<CellSize, string> = {
   sm: "h-48",
   md: "h-56",
@@ -19,17 +22,17 @@ export type TableProps = HTMLAttributes<HTMLTableElement>;
 
 /**
  * Table — Mentorfy.DS
- * Espelha os component sets "Table Cell" (Type x Size x Position) e
- * "Table Header Cell" (Position) do Figma. Em vez de recriar cada um dos
- * 12 "Type" como componente separado, o código expõe primitivas
- * (Table/TableRow/TableHeaderCell/TableCell) que se compõem com Avatar,
- * Badge, Checkbox e Switch já existentes — a mesma variedade do Figma,
- * sem duplicar lógica.
+ * Espelha os component sets "Table Cell" (Type x Size x Position, 40
+ * variantes) e "Table Header Cell" (Position x Checkbox, 6 variantes) do
+ * Figma. Em vez de recriar cada um dos 12 "Type" como componente separado,
+ * o código expõe primitivas (Table/TableRow/TableHeaderCell/TableCell) que
+ * se compõem com Avatar, Badge, Checkbox, Switch, Radio e Rating — a mesma
+ * variedade do Figma, sem duplicar lógica.
  */
 export function Table({ className = "", children, ...props }: TableProps) {
   return (
-    <div className="overflow-hidden rounded-lg border border-line bg-card">
-      <table className={`w-full border-collapse text-body-sm ${className}`} {...props}>
+    <div className="overflow-x-auto overflow-y-hidden rounded-lg border border-line bg-card">
+      <table className={`w-full min-w-max border-collapse text-body-sm ${className}`} {...props}>
         {children}
       </table>
     </div>
@@ -43,14 +46,40 @@ export function TableRow({ className = "", ...props }: TableRowProps) {
 
 export interface TableHeaderCellProps extends ThHTMLAttributes<HTMLTableCellElement> {
   align?: CellAlign;
+  /** Mostra o ícone de ordenação (caret up/down) ao lado do rótulo. Não existe como variante própria no Figma — adicionado aqui por ser um recurso comum de tabela real, sem mudar a aparência das colunas não-ordenáveis. */
+  sortable?: boolean;
+  /** Direção atual de ordenação — só relevante com `sortable`. Vira o atributo `aria-sort` do `<th>`. */
+  sortDirection?: "ascending" | "descending";
 }
-export function TableHeaderCell({ align = "left", className = "", children, ...props }: TableHeaderCellProps) {
+/**
+ * Table Header Cell — altura fixa 44px, fundo/borda em --color-table-line
+ * (#262626, extraído do Figma) e label 12px bold em --color-ink (o Figma
+ * usa quase-branco #FAFAFA, mais próximo do nosso ink do que do ink-muted
+ * usado antes aqui — esse era um mismatch de cor da versão anterior).
+ */
+export function TableHeaderCell({
+  align = "left",
+  sortable = false,
+  sortDirection,
+  className = "",
+  children,
+  ...props
+}: TableHeaderCellProps) {
   return (
     <th
-      className={`h-44 border-b border-line bg-hover px-16 text-body-xs font-bold text-ink-muted ${alignClass[align]} ${className}`}
+      scope="col"
+      aria-sort={sortable ? sortDirection ?? "none" : undefined}
+      className={`h-44 border-b border-t border-table-line bg-table-line px-16 text-body-xs font-bold text-ink first:rounded-tl-lg last:rounded-tr-lg ${className}`}
       {...props}
     >
-      {children}
+      <span className={`flex items-center gap-4 ${justifyClass[align]}`}>
+        {children}
+        {sortable && (
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" className="shrink-0 text-ink-muted">
+            <path d="M4 5.5L7 2.5L10 5.5M4 8.5L7 11.5L10 8.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        )}
+      </span>
     </th>
   );
 }
@@ -59,13 +88,21 @@ export interface TableCellProps extends TdHTMLAttributes<HTMLTableCellElement> {
   align?: CellAlign;
   size?: CellSize;
 }
+/**
+ * Table Cell — no Figma é o próprio conteúdo que já vem centralizado
+ * verticalmente e alinhado (Position=Left/Center/Right vira
+ * justify-content) dentro da célula, em vez de depender de quem usa
+ * envolver o conteúdo num div flex à parte (como a versão anterior
+ * exigia pra Switch/Checkbox). Manter o mesmo `size` em todas as células
+ * de uma tabela — ver seção Anatomia da doc.
+ */
 export function TableCell({ align = "left", size = "md", className = "", children, ...props }: TableCellProps) {
   return (
     <td
-      className={`border-b border-line px-16 text-ink last:border-b-0 ${rowHeight[size]} ${alignClass[align]} ${className}`}
+      className={`border-b border-table-line px-16 text-ink last:border-b-0 ${rowHeight[size]} ${className}`}
       {...props}
     >
-      {children}
+      <div className={`flex h-full items-center gap-8 ${justifyClass[align]}`}>{children}</div>
     </td>
   );
 }

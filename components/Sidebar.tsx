@@ -29,6 +29,8 @@ const nav = [
       { label: "Sidebar", href: "/components/sidebar" },
       { label: "Switch", href: "/components/switch" },
       { label: "Checkbox", href: "/components/checkbox" },
+      { label: "Radio", href: "/components/radio" },
+      { label: "Rating", href: "/components/rating" },
       { label: "Select", href: "/components/select" },
       { label: "Tabs", href: "/components/tabs" },
       { label: "Modal", href: "/components/modal" },

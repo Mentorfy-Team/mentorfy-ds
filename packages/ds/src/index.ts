@@ -28,6 +28,12 @@ export type { SwitchProps, SwitchSize } from "./Switch";
 export { Checkbox } from "./Checkbox";
 export type { CheckboxProps } from "./Checkbox";
 
+export { Radio } from "./Radio";
+export type { RadioProps } from "./Radio";
+
+export { Rating } from "./Rating";
+export type { RatingProps } from "./Rating";
+
 export { Select } from "./Select";
 export type { SelectProps, SelectOption } from "./Select";
 
