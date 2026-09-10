@@ -61,7 +61,15 @@ export function SidebarItem({
     <>
       {active && <span className="absolute left-0 top-0 h-full w-[4px] rounded-l-md bg-brand" />}
       {icon}
-      {hasLabel && <span className="flex-1 text-left">{children}</span>}
+      {/* overflow-hidden + whitespace-nowrap: sem isso, o texto fica sujeito a
+          quebrar linha (reflow) durante a transição de largura do painel —
+          como o span calcula o wrap com base na largura disponível A CADA
+          frame da animação, o texto "embaralhava" quebrando/desquebrando
+          linha continuamente enquanto o painel ainda estava estreito, dando
+          a impressão de letras amontoadas. Com nowrap, o texto mantém a
+          largura natural (de uma linha só) o tempo todo — só fica clipado
+          (não quebrado) até o painel abrir o suficiente. */}
+      {hasLabel && <span className="flex-1 overflow-hidden text-left whitespace-nowrap">{children}</span>}
       {hasLabel && expandable ? (
         <svg
           width="12"

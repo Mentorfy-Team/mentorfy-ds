@@ -33,16 +33,22 @@ export function Sidebar({ collapsed = false, header, footer, children, className
       )}
       <nav aria-label="Sidebar" className="flex flex-1 flex-col gap-0 overflow-x-hidden overflow-y-auto p-12">
         {/* key={collapsed} força remount ao trocar entre os dois conjuntos de
-            itens (ícone-only vs. com label). O texto entra deslizando +
-            fade — na mesma direção e com a mesma curva da transição de
-            largura do <aside> — em vez de só aparecer estático por cima
-            do painel ainda estreito. */}
-        <div
-          key={collapsed ? "collapsed" : "expanded"}
-          className="flex flex-1 flex-col gap-0"
-          style={{ animation: "sidebar-label-slide 400ms ease-[cubic-bezier(0.25,0.46,0.45,0.94)] both" }}
-        >
-          {children}
+            itens (ícone-only vs. com label), e cada item entra deslizando +
+            fade com um atraso crescente por posição — mesma técnica de
+            cascata do SidebarSubmenu, aplicada aqui aos itens de topo do
+            nav, pra aparecerem suavemente um por um em vez de todos de
+            uma vez. */}
+        <div key={collapsed ? "collapsed" : "expanded"} className="flex flex-1 flex-col gap-0">
+          {Children.toArray(children).map((child, i) => (
+            <div
+              key={i}
+              style={{
+                animation: `sidebar-label-slide 320ms ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${Math.min(i * 15, 240)}ms both`,
+              }}
+            >
+              {child}
+            </div>
+          ))}
         </div>
       </nav>
       {footer && (
@@ -125,7 +131,7 @@ export type SidebarSubItemProps = SidebarSubItemOwnProps &
 
 /** Item filho de um SidebarSubmenu — sem ícone, o texto alinha com o ícone do trigger pai. */
 export function SidebarSubItem({ active = false, className = "", children, href, ...props }: SidebarSubItemProps) {
-  const sharedClassName = `flex h-[32px] w-full shrink-0 items-center rounded-md pl-[14px] pr-12 text-left text-body-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-nav ${
+  const sharedClassName = `flex h-[32px] w-full shrink-0 items-center overflow-hidden whitespace-nowrap rounded-md pl-[14px] pr-12 text-left text-body-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-nav ${
     active ? "bg-surface font-medium text-ink-brand" : "text-nav-muted hover:bg-hover hover:text-ink"
   } ${className}`;
 
@@ -189,7 +195,7 @@ export interface SidebarGroupLabelProps {
 export function SidebarGroupLabel({ children, className = "" }: SidebarGroupLabelProps) {
   return (
     <p
-      className={`px-8 pt-4 pb-6 text-[11px] leading-[16.5px] font-bold uppercase tracking-[1.2px] text-nav-muted ${className}`}
+      className={`overflow-hidden px-8 pt-4 pb-6 text-[11px] leading-[16.5px] font-bold uppercase tracking-[1.2px] whitespace-nowrap text-nav-muted ${className}`}
     >
       {children}
     </p>

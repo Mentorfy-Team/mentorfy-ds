@@ -174,9 +174,13 @@ function InteractiveSidebarDemo({ initialCollapsed = false }: { initialCollapsed
           ) : (
             <div className="flex w-full items-center gap-12">
               <Avatar size="sm" initials="CM" status="online" />
-              <div className="flex flex-1 flex-col">
-                <span className="text-body-sm font-medium">Carlos Mentor</span>
-                <span className="text-body-xs text-ink-muted">Mentor Pro</span>
+              {/* min-w-0 + truncate: sem isso, o texto quebrava linha durante a
+                  transição de largura (o flex item recusa encolher abaixo do
+                  conteúdo por padrão), dando a impressão de letras amontoadas
+                  até o painel terminar de abrir. */}
+              <div className="flex min-w-0 flex-1 flex-col">
+                <span className="truncate text-body-sm font-medium">Carlos Mentor</span>
+                <span className="truncate text-body-xs text-ink-muted">Mentor Pro</span>
               </div>
               <button
                 type="button"
