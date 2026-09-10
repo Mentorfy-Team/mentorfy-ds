@@ -31,8 +31,19 @@ export function Sidebar({ collapsed = false, header, footer, children, className
           {header}
         </div>
       )}
-      <nav aria-label="Sidebar" className="flex flex-1 flex-col gap-0 overflow-y-auto p-12">
-        {children}
+      <nav aria-label="Sidebar" className="flex flex-1 flex-col gap-0 overflow-x-hidden overflow-y-auto p-12">
+        {/* key={collapsed} força remount ao trocar entre os dois conjuntos de
+            itens (ícone-only vs. com label) — sem isso o texto do modo
+            expandido aparecia instantâneo por cima do painel ainda estreito
+            (width em transição), ficando amontoado. O fade com delay só
+            revela o conteúdo quando o painel já abriu o suficiente. */}
+        <div
+          key={collapsed ? "collapsed" : "expanded"}
+          className="flex flex-1 flex-col gap-0"
+          style={{ animation: `sidebar-content-fade 260ms ease-out ${collapsed ? "0ms" : "200ms"} both` }}
+        >
+          {children}
+        </div>
       </nav>
       {footer && <div className="flex h-[72px] shrink-0 items-center border-t border-nav-line px-20">{footer}</div>}
     </aside>
