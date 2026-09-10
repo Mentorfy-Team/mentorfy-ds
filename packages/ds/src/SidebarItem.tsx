@@ -44,7 +44,8 @@ export function SidebarItem({
     <button
       type="button"
       disabled={disabled}
-      className={`relative flex h-[40px] w-full shrink-0 items-center gap-8 rounded-md text-body-sm font-medium transition-colors disabled:opacity-40 disabled:pointer-events-none ${
+      aria-current={active ? "page" : undefined}
+      className={`relative flex h-[40px] w-full shrink-0 items-center gap-8 rounded-md text-body-sm font-medium transition-colors disabled:opacity-40 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-nav ${
         hasLabel ? "justify-start pl-12 pr-12" : "justify-center px-0"
       } ${active ? "bg-surface text-ink-brand" : "text-ink hover:bg-hover"} ${className}`}
       {...props}

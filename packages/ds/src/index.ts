@@ -43,5 +43,11 @@ export type { TooltipProps, TooltipPosition } from "./Tooltip";
 export { Table, TableRow, TableHeaderCell, TableCell } from "./Table";
 export type { TableProps, TableRowProps, TableHeaderCellProps, TableCellProps, CellAlign, CellSize } from "./Table";
 
-export { Sidebar, SidebarSubmenu, SidebarGroupLabel } from "./Sidebar";
-export type { SidebarProps, SidebarSubmenuProps, SidebarGroupLabelProps } from "./Sidebar";
+export { Sidebar, SidebarSubmenu, SidebarSubItem, SidebarSection, SidebarGroupLabel } from "./Sidebar";
+export type {
+  SidebarProps,
+  SidebarSubmenuProps,
+  SidebarSubItemProps,
+  SidebarSectionProps,
+  SidebarGroupLabelProps,
+} from "./Sidebar";
