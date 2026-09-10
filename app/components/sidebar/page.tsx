@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
+import { CodeBlock } from "@/components/CodeBlock";
 import { Sidebar, SidebarGroupLabel, SidebarItem, SidebarSubmenu, SidebarSubItem, SidebarSection, Avatar } from "@brunosantossss/ds";
 import {
   PainelIcon,
@@ -378,9 +379,9 @@ export default function SidebarPage() {
         description="Navegação principal do produto, alternando entre modo expandido (280px) e colapsado (88px, ícone-only). É um contêiner de layout — a navegação é composta com SidebarItem, SidebarGroupLabel e SidebarSubmenu, já que rota ativa e permissões dependem da aplicação. IA, ícones, cores e espaçamento espelham a sidebar real do produto no Figma, valor por valor."
       />
 
-      <div className="rounded-lg border border-line-subtle bg-card p-16 mb-32">
-        <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto">
-{`import { Sidebar, SidebarItem, SidebarGroupLabel, SidebarSubmenu, SidebarSubItem } from "@brunosantossss/ds";
+      <CodeBlock
+        className="border border-line-subtle mb-32"
+        code={`import { Sidebar, SidebarItem, SidebarGroupLabel, SidebarSubmenu, SidebarSubItem } from "@brunosantossss/ds";
 
 <Sidebar header={<Header />} footer={<Footer />}>
   <SidebarGroupLabel>Gestão</SidebarGroupLabel>
@@ -394,8 +395,7 @@ export default function SidebarPage() {
   </SidebarSubmenu>
   <SidebarItem icon={<IndicacoesIcon />} active>Indicações</SidebarItem>
 </Sidebar>`}
-        </pre>
-      </div>
+      />
 
       <div className="mb-48">
         <h2 className="text-body-xl font-bold mb-8">Visão geral</h2>
@@ -460,12 +460,12 @@ export default function SidebarPage() {
               quad&quot; do submenu, pra sensação consistente). Quem usa o componente só troca o boolean; a
               transição é toda interna ao <code className="font-mono">Sidebar</code>.
             </p>
-            <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto rounded-md bg-card p-12">
-{`className={\`... transition-[width]
+            <CodeBlock
+              code={`className={\`... transition-[width]
   duration-300
   ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
   \${collapsed ? "w-[88px]" : "w-[280px]"}\`}`}
-            </pre>
+            />
           </div>
           <div className="rounded-lg border border-line-subtle p-16">
             <p className="text-body-sm font-medium text-ink mb-4">Abrir / fechar submenu</p>
@@ -476,8 +476,8 @@ export default function SidebarPage() {
               <code className="font-mono">translateY -4px → 0</code>), com 45ms de atraso a mais por índice — dá o
               efeito de cascata ao abrir.
             </p>
-            <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto rounded-md bg-card p-12">
-{`<div style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+            <CodeBlock
+              code={`<div style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
      className="grid transition-[grid-template-rows] duration-[380ms]">
   <div className="overflow-hidden">
     {items.map((child, i) => (
@@ -487,7 +487,7 @@ export default function SidebarPage() {
     ))}
   </div>
 </div>`}
-            </pre>
+            />
           </div>
         </div>
       </div>
@@ -499,29 +499,83 @@ export default function SidebarPage() {
           fonte de verdade que corrigiu os bugs de espaçamento desta página em versões anteriores.
         </p>
         <div className="rounded-lg border border-line-subtle bg-card p-24 mb-16 flex justify-center overflow-x-auto">
-          <svg width="560" height="300" viewBox="0 0 560 300" fontFamily="var(--font-sans)">
-            <rect x="20" y="10" width="200" height="280" rx="10" fill="var(--color-nav)" stroke="var(--color-nav-line)" />
-            <rect x="20" y="10" width="200" height="46" fill="none" stroke="var(--color-brand)" strokeDasharray="3 3" />
-            <text x="30" y="70" fill="var(--color-nav-muted)" fontSize="10">Header · h-[64px]</text>
-            <rect x="20" y="80" width="200" height="170" fill="none" stroke="var(--color-brand)" strokeDasharray="3 3" />
-            <text x="30" y="264" fill="var(--color-nav-muted)" fontSize="10">Nav · p-12 · gap-0</text>
-            <rect x="20" y="244" width="200" height="46" fill="none" stroke="var(--color-brand)" strokeDasharray="3 3" />
-            <text x="228" y="18" fill="var(--color-ink-muted)" fontSize="10">w-[280px] (colapsada: w-[88px])</text>
+          <svg width="640" height="330" viewBox="0 0 640 330" fontFamily="var(--font-sans)">
+            {/* Painel da sidebar */}
+            <rect x="40" y="20" width="190" height="260" rx="10" fill="var(--color-nav)" stroke="var(--color-nav-line)" strokeWidth="1.5" />
+            <line x1="40" y1="64" x2="230" y2="64" stroke="var(--color-nav-line)" />
+            <line x1="40" y1="230" x2="230" y2="230" stroke="var(--color-nav-line)" />
 
-            <rect x="70" y="96" width="150" height="40" rx="8" fill="var(--color-surface)" stroke="var(--color-brand)" />
-            <rect x="70" y="96" width="4" height="40" fill="var(--color-brand)" />
-            <rect x="86" y="108" width="16" height="16" fill="var(--color-ink-brand)" opacity="0.5" />
-            <text x="240" y="102" fill="var(--color-ink-muted)" fontSize="10">item · h-[40px]</text>
-            <text x="240" y="116" fill="var(--color-ink-muted)" fontSize="10">icon 20×20 · gap-8</text>
-            <text x="240" y="130" fill="var(--color-ink-muted)" fontSize="10">pl-12 pr-12</text>
-            <text x="240" y="144" fill="var(--color-ink-muted)" fontSize="10">active: barra 4px bg-brand</text>
+            {/* Item ativo */}
+            <rect x="52" y="88" width="166" height="40" rx="8" fill="var(--color-surface)" stroke="var(--color-brand)" strokeWidth="1.5" />
+            <rect x="52" y="88" width="4" height="40" fill="var(--color-brand)" />
+            <rect x="68" y="100" width="16" height="16" rx="3" fill="var(--color-ink-brand)" />
+            <rect x="92" y="104" width="100" height="8" rx="4" fill="var(--color-ink)" />
 
-            <text x="240" y="170" fill="var(--color-ink-muted)" fontSize="10">GRUPO</text>
-            <text x="240" y="184" fill="var(--color-ink-muted)" fontSize="10">label: mt-14 · pt-4 · pb-6</text>
-            <text x="240" y="198" fill="var(--color-ink-muted)" fontSize="10">11px · leading-[16.5px]</text>
+            {/* Item inativo */}
+            <rect x="52" y="136" width="166" height="40" rx="8" fill="none" stroke="var(--color-nav-line)" />
+            <rect x="68" y="148" width="16" height="16" rx="3" fill="var(--color-nav-muted)" />
+            <rect x="92" y="152" width="80" height="8" rx="4" fill="var(--color-nav-muted)" />
 
-            <text x="240" y="224" fill="var(--color-ink-muted)" fontSize="10">bordas: nav-line #1E1E1E</text>
-            <text x="240" y="238" fill="var(--color-ink-muted)" fontSize="10">chip botão: nav-chip #1A1A1A</text>
+            {/* Labels de região — alto contraste (ink), não mais nav-muted */}
+            <line x1="230" y1="42" x2="254" y2="42" stroke="var(--color-ink-muted)" />
+            <text x="258" y="46" fontSize="11" fontWeight="700" fill="var(--color-ink)" fontFamily="ui-monospace, monospace">Header</text>
+            <line x1="230" y1="147" x2="254" y2="147" stroke="var(--color-ink-muted)" />
+            <text x="258" y="151" fontSize="11" fontWeight="700" fill="var(--color-ink)" fontFamily="ui-monospace, monospace">Nav</text>
+            <line x1="230" y1="255" x2="254" y2="255" stroke="var(--color-ink-muted)" />
+            <text x="258" y="259" fontSize="11" fontWeight="700" fill="var(--color-ink)" fontFamily="ui-monospace, monospace">Footer</text>
+
+            {/* Linhas de cota (estilo redline) — sólidas, com badge de valor, bem mais contraste que o dashed anterior */}
+            <g stroke="var(--color-danger)" strokeWidth="2">
+              <line x1="340" y1="20" x2="340" y2="64" />
+              <line x1="336" y1="20" x2="344" y2="20" />
+              <line x1="336" y1="64" x2="344" y2="64" />
+              <line x1="340" y1="88" x2="340" y2="128" />
+              <line x1="336" y1="88" x2="344" y2="88" />
+              <line x1="336" y1="128" x2="344" y2="128" />
+              <line x1="340" y1="230" x2="340" y2="280" />
+              <line x1="336" y1="230" x2="344" y2="230" />
+              <line x1="336" y1="280" x2="344" y2="280" />
+            </g>
+            <g fontFamily="ui-monospace, monospace" fontSize="10" fontWeight="700" fill="#fff">
+              <rect x="350" y="33" width="44" height="18" rx="4" fill="var(--color-danger)" />
+              <text x="372" y="46" textAnchor="middle">64px</text>
+              <rect x="350" y="99" width="44" height="18" rx="4" fill="var(--color-danger)" />
+              <text x="372" y="112" textAnchor="middle">40px</text>
+              <rect x="350" y="246" width="44" height="18" rx="4" fill="var(--color-danger)" />
+              <text x="372" y="259" textAnchor="middle">72px</text>
+            </g>
+
+            {/* Detalhes — bullet de destaque + valor em ink (alto contraste) + descrição em ink-muted */}
+            <g fontFamily="ui-monospace, monospace" fontSize="10.5">
+              <circle cx="406" cy="36" r="3" fill="var(--color-brand)" />
+              <text x="414" y="40"><tspan fill="var(--color-ink)" fontWeight="700">icon 20×20</tspan><tspan fill="var(--color-ink-muted)"> · gap-8</tspan></text>
+              <circle cx="406" cy="70" r="3" fill="var(--color-brand)" />
+              <text x="414" y="74"><tspan fill="var(--color-ink)" fontWeight="700">pl-12 pr-12</tspan><tspan fill="var(--color-ink-muted)"> · padding do item</tspan></text>
+              <circle cx="406" cy="104" r="3" fill="var(--color-brand)" />
+              <text x="414" y="108"><tspan fill="var(--color-ink)" fontWeight="700">barra ativa 4px</tspan><tspan fill="var(--color-ink-muted)"> · bg-brand</tspan></text>
+              <circle cx="406" cy="138" r="3" fill="var(--color-brand)" />
+              <text x="414" y="142"><tspan fill="var(--color-ink)" fontWeight="700">mt-14 pt-4 pb-6</tspan><tspan fill="var(--color-ink-muted)"> · label de grupo</tspan></text>
+              <circle cx="406" cy="172" r="3" fill="var(--color-brand)" />
+              <text x="414" y="176"><tspan fill="var(--color-ink)" fontWeight="700">nav-line</tspan><tspan fill="var(--color-ink-muted)"> #1E1E1E · bordas</tspan></text>
+              <circle cx="406" cy="206" r="3" fill="var(--color-brand)" />
+              <text x="414" y="210"><tspan fill="var(--color-ink)" fontWeight="700">nav-chip</tspan><tspan fill="var(--color-ink-muted)"> #1A1A1A · botão-ícone</tspan></text>
+            </g>
+
+            {/* Faixa de badges de token — mesma linguagem visual da referência (pill sólido, alto contraste) */}
+            <g fontFamily="ui-monospace, monospace" fontSize="10" fontWeight="700" fill="var(--color-ink-on-brand)">
+              <rect x="107" y="300" width="76" height="20" rx="10" fill="var(--color-brand)" />
+              <text x="145" y="314" textAnchor="middle">w-[280px]</text>
+              <rect x="191" y="300" width="68" height="20" rx="10" fill="var(--color-brand)" />
+              <text x="225" y="314" textAnchor="middle">w-[88px]</text>
+              <rect x="267" y="300" width="68" height="20" rx="10" fill="var(--color-brand)" />
+              <text x="301" y="314" textAnchor="middle">h-[64px]</text>
+              <rect x="343" y="300" width="68" height="20" rx="10" fill="var(--color-brand)" />
+              <text x="377" y="314" textAnchor="middle">h-[72px]</text>
+              <rect x="419" y="300" width="50" height="20" rx="10" fill="var(--color-brand)" />
+              <text x="444" y="314" textAnchor="middle">p-12</text>
+              <rect x="477" y="300" width="56" height="20" rx="10" fill="var(--color-brand)" />
+              <text x="505" y="314" textAnchor="middle">gap-8</text>
+            </g>
           </svg>
         </div>
         <PropsTable
