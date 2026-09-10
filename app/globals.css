@@ -17,7 +17,12 @@
 @import "@brunosantossss/ds/theme.css";
 
 body {
-  background: var(--color-page);
+  /* Fundo preto do site publicado (pedido explícito) — usa o token
+     color/neutral/950 ("Neutral Black C", o tom mais próximo de preto
+     puro na paleta) em vez de bg-page (neutral/900, mais amarronzado),
+     só aqui no site de documentação — não altera o token compartilhado
+     pelo pacote @brunosantossss/ds. */
+  background: var(--color-neutral-950);
   color: var(--color-ink);
   font-family: var(--font-sans);
 }

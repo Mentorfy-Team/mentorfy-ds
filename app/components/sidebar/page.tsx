@@ -1,23 +1,81 @@
 import { PageHeader } from "@/components/PageHeader";
-import { Sidebar, SidebarSubmenu, SidebarItem, Avatar } from "@brunosantossss/ds";
+import { Sidebar, SidebarSubmenu, SidebarGroupLabel, SidebarItem, Avatar } from "@brunosantossss/ds";
+import {
+  PainelIcon,
+  AlunosIcon,
+  RelatoriosIcon,
+  ReunioesIcon,
+  IndicacoesIcon,
+  MeusProdutosIcon,
+  VitrineIcon,
+  AprovacoesIcon,
+  MeusClientesIcon,
+  GruposIcon,
+  AiStudioIcon,
+  BrandStudioIcon,
+  MeuCopilotoIcon,
+  CopilotoDoAlunoIcon,
+  EquipeIcon,
+  DominioIcon,
+  IntegracoesIcon,
+  SegurancaIcon,
+  PerfilIcon,
+  SenhaIcon,
+  AssinaturaIcon,
+  TutoriaisIcon,
+  PrecisaDeAjudaIcon,
+  CollapseIcon,
+  CloseIcon,
+} from "./icons";
 
-const dotIcon = <span className="h-20 w-20 shrink-0 rounded-md bg-hover-strong" />;
-
-function DemoNav() {
+// Espelha a IA real da sidebar do produto (página "❖ · Sidebar" no Bússola.DS):
+// mesmos grupos, mesmos itens, mesmo item ativo ("Indicações") e mesmos ícones
+// (extraídos vetor por vetor do Figma). Só os nomes/dados de exemplo (avatar,
+// usuário) seguem placeholder, já que dependem da sessão real da aplicação.
+function DemoNavTop() {
   return (
     <>
-      <SidebarItem active>Dashboard</SidebarItem>
-      <SidebarItem badge={5}>Mentorias</SidebarItem>
-      <SidebarItem expandable expanded>Alunos</SidebarItem>
+      <SidebarGroupLabel>Gestão</SidebarGroupLabel>
+      <SidebarItem icon={<PainelIcon />}>Painel</SidebarItem>
+      <SidebarItem icon={<AlunosIcon />} expandable expanded>
+        Alunos
+      </SidebarItem>
       <SidebarSubmenu>
         <SidebarItem className="text-body-sm">Turmas</SidebarItem>
         <SidebarItem className="text-body-sm">Certificados</SidebarItem>
       </SidebarSubmenu>
-      <SidebarItem>Financeiro</SidebarItem>
-      <SidebarItem disabled>Relatórios</SidebarItem>
+      <SidebarItem icon={<RelatoriosIcon />}>Relatórios</SidebarItem>
+      <SidebarItem icon={<ReunioesIcon />}>Reuniões</SidebarItem>
+      <SidebarItem icon={<IndicacoesIcon />} active>
+        Indicações
+      </SidebarItem>
     </>
   );
 }
+
+const collapsedIcons = [
+  PainelIcon,
+  AlunosIcon,
+  RelatoriosIcon,
+  ReunioesIcon,
+  IndicacoesIcon,
+  MeusProdutosIcon,
+  VitrineIcon,
+  AprovacoesIcon,
+  MeusClientesIcon,
+  GruposIcon,
+  AiStudioIcon,
+  BrandStudioIcon,
+  MeuCopilotoIcon,
+  CopilotoDoAlunoIcon,
+  EquipeIcon,
+  DominioIcon,
+  IntegracoesIcon,
+  SegurancaIcon,
+  PerfilIcon,
+  SenhaIcon,
+  AssinaturaIcon,
+];
 
 export default function SidebarPage() {
   return (
@@ -25,20 +83,21 @@ export default function SidebarPage() {
       <PageHeader
         category="Complex Component"
         title="Sidebar"
-        description="Navegação principal do produto, em duas larguras (Expanded/Collapsed). É um contêiner de layout — a navegação é composta com SidebarItem, já que a rota ativa depende da aplicação."
+        description="Navegação principal do produto, em duas larguras (Expanded/Collapsed). É um contêiner de layout — a navegação é composta com SidebarItem e SidebarGroupLabel, já que a rota ativa depende da aplicação. IA, ícones e item ativo espelham a sidebar real do produto no Figma."
       />
 
       <div className="rounded-lg border border-line bg-card p-16 mb-32">
         <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto">
-{`import { Sidebar, SidebarItem, SidebarSubmenu } from "@brunosantossss/ds";
+{`import { Sidebar, SidebarItem, SidebarGroupLabel, SidebarSubmenu } from "@brunosantossss/ds";
 
 <Sidebar footer={<UserFooter />}>
-  <SidebarItem active icon={<DashboardIcon />}>Dashboard</SidebarItem>
-  <SidebarItem badge={5} icon={<ChatIcon />}>Mentorias</SidebarItem>
-  <SidebarItem expandable expanded icon={<UsersIcon />}>Alunos</SidebarItem>
+  <SidebarGroupLabel>Gestão</SidebarGroupLabel>
+  <SidebarItem icon={<PainelIcon />}>Painel</SidebarItem>
+  <SidebarItem icon={<AlunosIcon />} expandable expanded>Alunos</SidebarItem>
   <SidebarSubmenu>
     <SidebarItem>Turmas</SidebarItem>
   </SidebarSubmenu>
+  <SidebarItem icon={<IndicacoesIcon />} active>Indicações</SidebarItem>
 </Sidebar>`}
         </pre>
       </div>
@@ -46,39 +105,78 @@ export default function SidebarPage() {
       <div className="mb-32 flex flex-wrap gap-24">
         <div>
           <h3 className="text-body-lg font-bold mb-12">Expanded</h3>
-          <div className="h-[520px] overflow-hidden rounded-lg border border-line">
+          <div className="h-[720px] overflow-hidden rounded-lg border border-line">
             <Sidebar
+              header={
+                <div className="flex items-center justify-between">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/mentorfy-logo.svg" alt="Mentorfy" className="h-[19px] w-auto" />
+                  <button type="button" className="text-ink-muted hover:text-ink transition-colors" aria-label="Fechar">
+                    <CloseIcon />
+                  </button>
+                </div>
+              }
               footer={
-                <div className="flex items-center gap-8">
-                  <Avatar size="sm" initials="BS" status="online" />
-                  <div className="flex flex-col">
-                    <span className="text-body-sm font-medium">Bruno Santos</span>
-                    <span className="text-body-xs text-ink-muted">Founder</span>
+                <div className="flex items-center gap-12">
+                  <Avatar size="sm" initials="CM" status="online" />
+                  <div className="flex flex-col flex-1">
+                    <span className="text-body-sm font-medium">Carlos Mentor</span>
+                    <span className="text-body-xs text-ink-muted">Mentor Pro</span>
                   </div>
+                  <CollapseIcon className="text-ink-muted" />
                 </div>
               }
             >
-              <DemoNav />
+              <DemoNavTop />
+              <SidebarGroupLabel>Mentorias</SidebarGroupLabel>
+              <SidebarItem icon={<MeusProdutosIcon />}>Meus Produtos</SidebarItem>
+              <SidebarItem icon={<VitrineIcon />}>Vitrine</SidebarItem>
+              <SidebarItem icon={<AprovacoesIcon />}>Aprovações</SidebarItem>
+              <SidebarGroupLabel>Clientes</SidebarGroupLabel>
+              <SidebarItem icon={<MeusClientesIcon />}>Meus Clientes</SidebarItem>
+              <SidebarItem icon={<GruposIcon />}>Grupos</SidebarItem>
+              <SidebarGroupLabel>AI Studio</SidebarGroupLabel>
+              <SidebarItem icon={<AiStudioIcon />}>AI Studio</SidebarItem>
+              <SidebarGroupLabel>Brand Studio</SidebarGroupLabel>
+              <SidebarItem icon={<BrandStudioIcon />}>Brand Studio</SidebarItem>
+              <SidebarGroupLabel>Copiloto</SidebarGroupLabel>
+              <SidebarItem icon={<MeuCopilotoIcon />}>Meu Copiloto</SidebarItem>
+              <SidebarItem icon={<CopilotoDoAlunoIcon />}>Copiloto do Aluno</SidebarItem>
+              <SidebarGroupLabel>Configurações</SidebarGroupLabel>
+              <SidebarItem icon={<EquipeIcon />}>Equipe</SidebarItem>
+              <SidebarItem icon={<DominioIcon />}>Domínio</SidebarItem>
+              <SidebarItem icon={<IntegracoesIcon />}>Integrações</SidebarItem>
+              <SidebarItem icon={<SegurancaIcon />}>Segurança</SidebarItem>
+              <SidebarGroupLabel>Minha Conta</SidebarGroupLabel>
+              <SidebarItem icon={<PerfilIcon />}>Perfil</SidebarItem>
+              <SidebarItem icon={<SenhaIcon />}>Senha</SidebarItem>
+              <SidebarItem icon={<AssinaturaIcon />}>Assinatura</SidebarItem>
+              <div className="mt-auto border-t border-line pt-8 flex flex-col gap-4">
+                <SidebarItem icon={<TutoriaisIcon />} className="text-ink-muted">
+                  Tutoriais
+                </SidebarItem>
+                <SidebarItem icon={<PrecisaDeAjudaIcon />} className="text-ink-muted">
+                  Precisa de ajuda?
+                </SidebarItem>
+              </div>
             </Sidebar>
           </div>
         </div>
 
         <div>
           <h3 className="text-body-lg font-bold mb-12">Collapsed</h3>
-          <div className="h-[520px] overflow-hidden rounded-lg border border-line">
+          <div className="h-[720px] overflow-hidden rounded-lg border border-line">
             <Sidebar
               collapsed
               footer={
                 <div className="flex justify-center">
-                  <Avatar size="sm" initials="BS" status="online" />
+                  <Avatar size="sm" initials="CM" status="online" />
                 </div>
               }
             >
-              <SidebarItem active title="Dashboard" icon={dotIcon} />
-              <SidebarItem title="Mentorias" icon={dotIcon} />
-              <SidebarItem title="Alunos" icon={dotIcon} />
-              <SidebarItem title="Financeiro" icon={dotIcon} />
-              <SidebarItem disabled title="Relatórios" icon={dotIcon} />
+              {collapsedIcons.map((IconCmp, i) => (
+                <SidebarItem key={i} active={i === 4} title={i === 4 ? "Indicações" : undefined} icon={<IconCmp />} />
+              ))}
             </Sidebar>
           </div>
         </div>
@@ -90,7 +188,7 @@ export default function SidebarPage() {
           {[
             ["collapsed", "boolean — largura 88px (ícones) em vez de 280px"],
             ["header / footer", "ReactNode"],
-            ["children", "ReactNode — normalmente <SidebarItem> e <SidebarSubmenu>"],
+            ["children", "ReactNode — normalmente <SidebarGroupLabel>, <SidebarItem> e <SidebarSubmenu>"],
           ].map(([prop, value]) => (
             <div key={prop} className="grid grid-cols-2 px-16 py-12 border-b border-line last:border-b-0">
               <span className="text-body-sm text-ink font-mono">{prop}</span>
@@ -98,6 +196,14 @@ export default function SidebarPage() {
             </div>
           ))}
         </div>
+      </div>
+
+      <div>
+        <h3 className="text-body-lg font-bold mb-12">Uso</h3>
+        <ul className="text-body-sm text-ink-muted list-disc pl-20 flex flex-col gap-4">
+          <li>O painel da sidebar usa o token bg-nav (mais escuro/frio que bg-page), para o item Active (bg-surface) se destacar visualmente do fundo — assim como no Figma.</li>
+          <li>SidebarGroupLabel separa os grupos de navegação (Gestão, Mentorias, Clientes, etc.), espelhando as seções da sidebar real do produto.</li>
+        </ul>
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ export interface SidebarProps {
 export function Sidebar({ collapsed = false, header, footer, children, className = "" }: SidebarProps) {
   return (
     <aside
-      className={`flex h-full flex-col border-r border-line bg-page transition-[width] ${
+      className={`flex h-full flex-col border-r border-line bg-nav transition-[width] ${
         collapsed ? "w-[88px]" : "w-[280px]"
       } ${className}`}
     >
@@ -37,4 +37,21 @@ export interface SidebarSubmenuProps {
 /** Agrupa subitens de navegação com recuo e linha vertical, como "Turmas/Certificados" no Figma. */
 export function SidebarSubmenu({ children, className = "" }: SidebarSubmenuProps) {
   return <div className={`ml-24 mt-2 flex flex-col gap-2 border-l border-line pl-12 ${className}`}>{children}</div>;
+}
+
+export interface SidebarGroupLabelProps {
+  children?: ReactNode;
+  className?: string;
+}
+
+/**
+ * Label de seção da sidebar (ex: "GESTÃO", "MENTORIAS", "CLIENTES" no Figma):
+ * DM Sans Bold 11px, uppercase, letter-spacing aberto, cor muted.
+ */
+export function SidebarGroupLabel({ children, className = "" }: SidebarGroupLabelProps) {
+  return (
+    <p className={`px-8 pt-4 pb-6 text-[11px] font-bold uppercase tracking-[0.06em] text-ink-muted ${className}`}>
+      {children}
+    </p>
+  );
 }

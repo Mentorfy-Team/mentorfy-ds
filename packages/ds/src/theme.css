@@ -56,6 +56,10 @@
   --color-page: var(--color-neutral-900); /* Primária — Pantone Black 4C */
   --color-surface: var(--color-neutral-900); /* Primária — Pantone Black 4C */
   --color-card: var(--color-neutral-950); /* Secundária — Neutral Black C */
+  --color-nav: #0A0A0A; /* Painel da Sidebar no Figma usa esse valor direto na cor
+    (não vinculado a nenhuma variável lá) — mais frio/escuro que neutral-950.
+    Criado aqui para dar nome a esse valor em vez de espalhar o hex pelo componente;
+    idealmente isso vira uma variável de verdade no Figma no futuro. */
   --color-hover: var(--color-neutral-800); /* Secundária — Neutral Black C, tint */
   --color-hover-strong: var(--color-neutral-700); /* Secundária — Neutral Black C, tint */
   --color-brand-subtle: var(--color-brown-700); /* Primária — tom de apoio compartilhado (Pantone 2319 C), tint escuro — repontado de orange/900 para melhorar contraste de Badge/Avatar/Button ghost-hover */
