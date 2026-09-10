@@ -128,7 +128,14 @@ function InteractiveSidebarDemo({ initialCollapsed = false }: { initialCollapsed
 
   return (
     <div className="flex h-[640px] items-center justify-center overflow-hidden bg-nav py-24">
-      <Sidebar
+      {/* Palco de largura fixa (280px, a largura máxima da sidebar) centralizado no
+          card — a Sidebar em si fica ancorada com left-0 dentro dele, então ao
+          colapsar/expandir só a borda direita se move (abre/fecha da esquerda pra
+          direita, como no produto real) em vez de encolher simetricamente a partir
+          do centro. */}
+      <div className="relative h-full w-[280px]">
+        <div className="absolute left-0 top-0 h-full">
+          <Sidebar
         collapsed={collapsed}
         header={
           collapsed ? (
@@ -249,7 +256,9 @@ function InteractiveSidebarDemo({ initialCollapsed = false }: { initialCollapsed
             <AjudaBlock />
           </>
         )}
-      </Sidebar>
+          </Sidebar>
+        </div>
+      </div>
     </div>
   );
 }
@@ -380,7 +389,7 @@ export default function SidebarPage() {
       />
 
       <CodeBlock
-        className="border border-line-subtle mb-32"
+        className="mb-32"
         code={`import { Sidebar, SidebarItem, SidebarGroupLabel, SidebarSubmenu, SidebarSubItem } from "@brunosantossss/ds";
 
 <Sidebar header={<Header />} footer={<Footer />}>
@@ -455,14 +464,14 @@ export default function SidebarPage() {
             <p className="text-body-sm font-medium text-ink mb-4">Expandir / recolher</p>
             <p className="text-body-xs text-ink-muted mb-12">
               O <code className="font-mono">&lt;aside&gt;</code> anima a própria largura ao trocar a prop{" "}
-              <code className="font-mono">collapsed</code> — 300ms, curva{" "}
+              <code className="font-mono">collapsed</code> — 500ms, curva{" "}
               <code className="font-mono">cubic-bezier(0.25, 0.46, 0.45, 0.94)</code> (a mesma &quot;ease-out
               quad&quot; do submenu, pra sensação consistente). Quem usa o componente só troca o boolean; a
               transição é toda interna ao <code className="font-mono">Sidebar</code>.
             </p>
             <CodeBlock
               code={`className={\`... transition-[width]
-  duration-300
+  duration-500
   ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
   \${collapsed ? "w-[88px]" : "w-[280px]"}\`}`}
             />
@@ -593,7 +602,7 @@ export default function SidebarPage() {
             { prop: "border", type: "border-nav-line · #1E1E1E", description: "Borda direita do painel e divisórias do header/footer — mais escura que --color-line (#6F6B6B), o token de borda padrão usado no resto do DS." },
             { prop: "icon-button chip", type: "bg-nav-chip · #1A1A1A", description: "Fundo dos botões-ícone do header/footer (fechar, recolher, expandir), 28×28px, rounded-md." },
             { prop: "submenu indent", type: "pl-24 (trigger) · pl-[14px] (sub-item)", description: "Recuo do painel do submenu e padding esquerdo de cada SidebarSubItem." },
-            { prop: "expand/collapse animation", type: "width · 300ms", description: "Transição de largura ao trocar collapsed — mesma curva cubic-bezier(0.25,0.46,0.45,0.94) do submenu, ver seção Animações." },
+            { prop: "expand/collapse animation", type: "width · 500ms", description: "Transição de largura ao trocar collapsed — mesma curva cubic-bezier(0.25,0.46,0.45,0.94) do submenu, ver seção Animações." },
             { prop: "submenu animation", type: "grid-rows [0fr→1fr] · 380ms", description: "Expansão via CSS grid-template-rows, sem JS medindo altura. Curva cubic-bezier(0.25,0.46,0.45,0.94)." },
             { prop: "submenu item fade", type: "sidebar-item-in · 260ms · 45ms/item", description: "Fade + slide de cada filho ao abrir: opacity 0→1, translateY -4px→0, stagger 45ms por índice." },
           ]}

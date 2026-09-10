@@ -45,12 +45,12 @@ export function CodeBlock({ code, className = "" }: { code: string; className?: 
   }
 
   return (
-    <div className={`overflow-hidden rounded-md bg-card ${className}`}>
-      <div className="flex items-center justify-end border-b border-line-subtle px-12 py-6">
+    <div className={`overflow-hidden rounded-md border border-brand-subtle bg-surface ${className}`}>
+      <div className="flex items-center justify-end border-b border-brand-subtle px-12 py-6">
         <button
           type="button"
           onClick={handleCopy}
-          className="flex items-center gap-4 rounded-md px-8 py-4 text-body-xs text-ink-muted transition-colors hover:bg-hover hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+          className="flex items-center gap-4 rounded-md px-8 py-4 text-body-xs text-ink-muted transition-colors hover:bg-hover hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
           aria-label={copied ? "Código copiado" : "Copiar código"}
         >
           {copied ? <CheckIcon /> : <CopyIcon />}

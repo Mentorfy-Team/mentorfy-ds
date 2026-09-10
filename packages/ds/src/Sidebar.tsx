@@ -18,7 +18,7 @@ export interface SidebarProps {
 export function Sidebar({ collapsed = false, header, footer, children, className = "" }: SidebarProps) {
   return (
     <aside
-      className={`flex h-full flex-col border-r border-nav-line bg-nav transition-[width] duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+      className={`flex h-full flex-col border-r border-nav-line bg-nav transition-[width] duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
         collapsed ? "w-[88px]" : "w-[280px]"
       } ${className}`}
     >
