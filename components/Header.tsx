@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Header() {
   return (
-    <header className="flex items-center justify-between px-24 py-16 border-b border-line">
+    <header className="flex items-center justify-between px-24 py-16 border-b border-line-subtle">
       <Link href="/" className="flex items-center gap-12">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/mentorfy-logo.svg" alt="Mentorfy" className="h-[19px] w-auto" />

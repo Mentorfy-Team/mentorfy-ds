@@ -56,7 +56,7 @@ export default function ReleaseNotesPage() {
         {releases.map((r, i) => (
           <div
             key={i}
-            className="grid grid-cols-[100px_1fr_50px_120px] gap-24 py-16 border-b border-line last:border-b-0"
+            className="grid grid-cols-[100px_1fr_50px_120px] gap-24 py-16 border-b border-line-subtle last:border-b-0"
           >
             <span className="text-body-sm text-ink-muted">{r.data}</span>
             <span className="text-body-sm text-ink">{r.oque}</span>

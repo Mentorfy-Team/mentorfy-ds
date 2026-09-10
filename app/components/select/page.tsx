@@ -17,7 +17,7 @@ export default function SelectPage() {
         description="Menu de opção única. Espelha os component sets 'Dropdown Trigger' e 'Dropdown Option' do Figma — funcional de verdade (abre/fecha, fecha ao clicar fora)."
       />
 
-      <div className="rounded-lg border border-line bg-card p-16 mb-32">
+      <div className="rounded-lg border border-line-subtle bg-card p-16 mb-32">
         <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto">
 {`import { Select } from "@brunosantossss/ds";
 
@@ -46,7 +46,7 @@ export default function SelectPage() {
 
       <div className="mb-32">
         <h3 className="text-body-lg font-bold mb-12">Propriedades</h3>
-        <div className="rounded-lg border border-line overflow-hidden">
+        <div className="rounded-lg border border-line-subtle overflow-hidden">
           {[
             ["options", "{ value, label, disabled? }[]"],
             ["value / defaultValue", "string — controlado ou não controlado"],
@@ -54,7 +54,7 @@ export default function SelectPage() {
             ["open", "boolean — força aberto/fechado (documentação)"],
             ["disabled", "boolean"],
           ].map(([prop, value]) => (
-            <div key={prop} className="grid grid-cols-2 px-16 py-12 border-b border-line last:border-b-0">
+            <div key={prop} className="grid grid-cols-2 px-16 py-12 border-b border-line-subtle last:border-b-0">
               <span className="text-body-sm text-ink font-mono">{prop}</span>
               <span className="text-body-sm text-ink-muted font-mono">{value}</span>
             </div>

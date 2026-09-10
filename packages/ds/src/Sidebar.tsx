@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, Children, ReactNode } from "react";
+import { AnchorHTMLAttributes, ButtonHTMLAttributes, Children, ReactNode } from "react";
 
 export interface SidebarProps {
   collapsed?: boolean;
@@ -52,12 +52,16 @@ export interface SidebarSubmenuProps {
  * funciona como trigger — o SidebarSubmenu em si só cuida do conteúdo e da
  * animação, o caret/rotação já é responsabilidade do SidebarItem.
  *
- * Animação em duas camadas, sem JS medindo altura:
- * 1. O painel abre/fecha via CSS grid-template-rows (0fr → 1fr), a técnica
- *    padrão pra animar `height: auto` sem conhecer a altura do conteúdo.
- * 2. Cada filho recebe um fade + slide-in (`sidebar-item-in`, ver theme.css)
- *    com atraso crescente por índice — dá a sensação de "cascata" ao abrir,
- *    em vez de tudo aparecer de uma vez.
+ * Animação em duas camadas, sem JS medindo altura, e nos dois sentidos
+ * (abrir E fechar — não só um deles):
+ * 1. O painel abre/fecha via CSS grid-template-rows (0fr → 1fr / 1fr → 0fr),
+ *    a técnica padrão pra animar `height: auto` sem conhecer a altura do
+ *    conteúdo. Funciona nos dois sentidos "de graça", é só o valor mudando.
+ * 2. Cada filho recebe um fade + slide (`sidebar-item-in`, ver theme.css)
+ *    com atraso crescente por índice — dá a sensação de "cascata". Ao abrir
+ *    toca normal (entra), ao fechar toca com `animation-direction: reverse`
+ *    (sai) — sem isso, o painel encolhia mas o conteúdo simplesmente
+ *    desaparecia de uma vez, sem animação nenhuma ao fechar.
  */
 export function SidebarSubmenu({ open, children, className = "" }: SidebarSubmenuProps) {
   const items = Children.toArray(children);
@@ -70,7 +74,12 @@ export function SidebarSubmenu({ open, children, className = "" }: SidebarSubmen
       <div className="overflow-hidden">
         <div className={`flex flex-col gap-2 py-4 pl-24 ${className}`}>
           {items.map((child, i) => (
-            <div key={i} style={{ animation: open ? `sidebar-item-in 260ms ease-out ${i * 45}ms both` : "none" }}>
+            <div
+              key={i}
+              style={{
+                animation: `sidebar-item-in 220ms ease-out ${i * 45}ms both ${open ? "normal" : "reverse"}`,
+              }}
+            >
               {child}
             </div>
           ))}
@@ -80,21 +89,42 @@ export function SidebarSubmenu({ open, children, className = "" }: SidebarSubmen
   );
 }
 
-export interface SidebarSubItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type SidebarSubItemOwnProps = {
   active?: boolean;
   children?: ReactNode;
-}
+  /** Quando passado, renderiza um `<a>` em vez de `<button>` — mesma ideia do `href` do SidebarItem. */
+  href?: string;
+};
+
+export type SidebarSubItemProps = SidebarSubItemOwnProps &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof SidebarSubItemOwnProps> &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof SidebarSubItemOwnProps>;
 
 /** Item filho de um SidebarSubmenu — sem ícone, o texto alinha com o ícone do trigger pai. */
-export function SidebarSubItem({ active = false, className = "", children, ...props }: SidebarSubItemProps) {
+export function SidebarSubItem({ active = false, className = "", children, href, ...props }: SidebarSubItemProps) {
+  const sharedClassName = `flex h-[32px] w-full shrink-0 items-center rounded-md pl-[14px] pr-12 text-left text-body-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-nav ${
+    active ? "bg-surface font-medium text-ink-brand" : "text-nav-muted hover:bg-hover hover:text-ink"
+  } ${className}`;
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        aria-current={active ? "page" : undefined}
+        className={sharedClassName}
+        {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
+      >
+        {children}
+      </a>
+    );
+  }
+
   return (
     <button
       type="button"
       aria-current={active ? "page" : undefined}
-      className={`flex h-[32px] w-full shrink-0 items-center rounded-md pl-[14px] pr-12 text-left text-body-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-nav ${
-        active ? "bg-surface font-medium text-ink-brand" : "text-nav-muted hover:bg-hover hover:text-ink"
-      } ${className}`}
-      {...props}
+      className={sharedClassName}
+      {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {children}
     </button>

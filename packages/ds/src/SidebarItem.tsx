@@ -1,7 +1,7 @@
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import { Badge } from "./Badge";
 
-export interface SidebarItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type SidebarItemOwnProps = {
   active?: boolean;
   icon?: ReactNode;
   badge?: number;
@@ -10,7 +10,19 @@ export interface SidebarItemProps extends ButtonHTMLAttributes<HTMLButtonElement
   /** Rotaciona o caret quando o submenu está aberto. Só tem efeito com `expandable`. */
   expanded?: boolean;
   children?: ReactNode;
-}
+  /**
+   * Quando passado, renderiza um `<a>` em vez de `<button>` — pra navegação
+   * de verdade (ex: o próprio menu deste site de docs usa isso). O pacote
+   * não depende de next/link: pra rotas client-side no Next, envolva com
+   * `<Link href={href} passHref legacyBehavior><SidebarItem .../></Link>`
+   * (o Link injeta href/onClick por cima destes props via legacyBehavior).
+   */
+  href?: string;
+};
+
+export type SidebarItemProps = SidebarItemOwnProps &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof SidebarItemOwnProps> &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof SidebarItemOwnProps>;
 
 /**
  * SidebarItem — Mentorfy.DS
@@ -35,24 +47,19 @@ export function SidebarItem({
   className = "",
   disabled,
   children,
+  href,
   ...props
 }: SidebarItemProps) {
   // Sem `children`, é o item icon-only da sidebar colapsada: centraliza o
   // ícone em vez de alinhar à esquerda com um espaço reservado pro texto.
   const hasLabel = children != null && children !== false;
-  return (
-    <button
-      type="button"
-      disabled={disabled}
-      aria-current={active ? "page" : undefined}
-      className={`relative flex h-[40px] w-full shrink-0 items-center gap-8 rounded-md text-body-sm font-medium transition-colors disabled:opacity-40 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-nav ${
-        hasLabel ? "justify-start pl-12 pr-12" : "justify-center px-0"
-      } ${active ? "bg-surface text-ink-brand" : "text-ink hover:bg-hover"} ${className}`}
-      {...props}
-    >
-      {active && (
-        <span className="absolute left-0 top-0 h-full w-[4px] rounded-l-md bg-brand" />
-      )}
+  const sharedClassName = `relative flex h-[40px] w-full shrink-0 items-center gap-8 rounded-md text-body-sm font-medium transition-colors disabled:opacity-40 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-nav ${
+    hasLabel ? "justify-start pl-12 pr-12" : "justify-center px-0"
+  } ${active ? "bg-surface text-ink-brand" : "text-ink hover:bg-hover"} ${className}`;
+
+  const content = (
+    <>
+      {active && <span className="absolute left-0 top-0 h-full w-[4px] rounded-l-md bg-brand" />}
       {icon}
       {hasLabel && <span className="flex-1 text-left">{children}</span>}
       {hasLabel && expandable ? (
@@ -64,7 +71,13 @@ export function SidebarItem({
           className={`shrink-0 text-nav-muted transition-transform ${expanded ? "rotate-180" : ""}`}
           aria-hidden="true"
         >
-          <path d="M0.835 0.835L5 4.165L9.165 0.835" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+          <path
+            d="M0.835 0.835L5 4.165L9.165 0.835"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       ) : (
         typeof badge === "number" && (
@@ -73,6 +86,31 @@ export function SidebarItem({
           </Badge>
         )
       )}
+    </>
+  );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        aria-current={active ? "page" : undefined}
+        className={sharedClassName}
+        {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      disabled={disabled}
+      aria-current={active ? "page" : undefined}
+      className={sharedClassName}
+      {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
+    >
+      {content}
     </button>
   );
 }

@@ -10,7 +10,7 @@ export default function ModalPage() {
         description="Janela sobreposta para confirmações e formulários curtos. Header/Body/Footer separados por divisores, sobre um scrim escuro."
       />
 
-      <div className="rounded-lg border border-line bg-card p-16 mb-32">
+      <div className="rounded-lg border border-line-subtle bg-card p-16 mb-32">
         <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto">
 {`import { Modal, Button } from "@brunosantossss/ds";
 
@@ -30,7 +30,7 @@ export default function ModalPage() {
 
       <div className="mb-32">
         <h3 className="text-body-lg font-bold mb-12">Exemplo (variant=&quot;inline&quot;, para documentação)</h3>
-        <div className="relative h-[420px] rounded-lg border border-line bg-page overflow-hidden">
+        <div className="relative h-[420px] rounded-lg border border-line-subtle bg-page overflow-hidden">
           <Modal
             open
             variant="inline"
@@ -53,7 +53,7 @@ export default function ModalPage() {
 
       <div className="mb-32">
         <h3 className="text-body-lg font-bold mb-12">Propriedades</h3>
-        <div className="rounded-lg border border-line overflow-hidden">
+        <div className="rounded-lg border border-line-subtle overflow-hidden">
           {[
             ["open", "boolean"],
             ["onClose", "() => void — chamado ao clicar no scrim"],
@@ -61,7 +61,7 @@ export default function ModalPage() {
             ["footer", "ReactNode"],
             ["variant", "fixed (padrão, cobre a viewport) | inline (posicionamento absoluto)"],
           ].map(([prop, value]) => (
-            <div key={prop} className="grid grid-cols-2 px-16 py-12 border-b border-line last:border-b-0">
+            <div key={prop} className="grid grid-cols-2 px-16 py-12 border-b border-line-subtle last:border-b-0">
               <span className="text-body-sm text-ink font-mono">{prop}</span>
               <span className="text-body-sm text-ink-muted font-mono">{value}</span>
             </div>

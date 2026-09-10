@@ -52,7 +52,7 @@ export default function Home() {
 
       <section className="grid grid-cols-2 md:grid-cols-4 gap-16">
         {stats.map((stat) => (
-          <div key={stat.label} className="rounded-lg border border-line bg-card px-16 py-16">
+          <div key={stat.label} className="rounded-lg border border-line-subtle bg-card px-16 py-16">
             <p className="text-display-sm font-bold text-brand">{stat.value}</p>
             <p className="text-body-xs text-ink-muted">{stat.label}</p>
           </div>
@@ -66,7 +66,7 @@ export default function Home() {
             <Link
               key={section.title}
               href={section.href}
-              className="flex flex-col gap-8 rounded-lg border border-line bg-card p-16 hover:border-brand transition-colors"
+              className="flex flex-col gap-8 rounded-lg border border-line-subtle bg-card p-16 hover:border-brand transition-colors"
             >
               <span className="text-body-xs text-ink-muted">{section.count} itens</span>
               <span className="text-body-md font-bold">{section.title}</span>

@@ -6,7 +6,7 @@ function ColorFamilyTable({ family }: { family: ColorFamily }) {
     <div className="mb-32">
       <h3 className="text-body-lg font-bold mb-2">{family.title}</h3>
       <p className="text-body-xs text-ink-muted mb-12">{family.description}</p>
-      <div className="rounded-lg border border-line overflow-hidden">
+      <div className="rounded-lg border border-line-subtle overflow-hidden">
         <div className="grid grid-cols-3 bg-card px-16 py-8">
           <span className="text-body-xs uppercase tracking-wide text-ink-muted">Nome</span>
           <span className="text-body-xs uppercase tracking-wide text-ink-muted">Preview</span>
@@ -15,12 +15,12 @@ function ColorFamilyTable({ family }: { family: ColorFamily }) {
         {family.tokens.map((token) => (
           <div
             key={token.name}
-            className="grid grid-cols-3 items-center px-16 py-12 border-t border-line"
+            className="grid grid-cols-3 items-center px-16 py-12 border-t border-line-subtle"
           >
             <span className="text-body-sm text-ink font-mono">{token.name}</span>
             <div className="flex items-center gap-8">
               <span
-                className="w-20 h-20 rounded shrink-0 border border-line"
+                className="w-20 h-20 rounded shrink-0 border border-line-subtle"
                 style={{ background: token.value }}
               />
               <span className="text-body-xs text-ink-muted font-mono">{token.cssVar}</span>

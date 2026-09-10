@@ -14,7 +14,7 @@ export default function SpacingPage() {
       <p className="text-body-xs text-ink-muted mb-16">
         Escala numérica de espaçamento, usada em padding, gap e margin.
       </p>
-      <div className="rounded-lg border border-line overflow-hidden mb-32">
+      <div className="rounded-lg border border-line-subtle overflow-hidden mb-32">
         <div className="grid grid-cols-2 bg-card px-16 py-8">
           <span className="text-body-xs uppercase tracking-wide text-ink-muted">Nome</span>
           <span className="text-body-xs uppercase tracking-wide text-ink-muted">Valor</span>
@@ -22,7 +22,7 @@ export default function SpacingPage() {
         {spacingTokens.map((tok) => (
           <div
             key={tok.name}
-            className="grid grid-cols-2 items-center px-16 py-12 border-t border-line"
+            className="grid grid-cols-2 items-center px-16 py-12 border-t border-line-subtle"
           >
             <span className="text-body-sm text-ink font-mono">{tok.name}</span>
             <div className="flex items-center gap-8">
@@ -39,7 +39,7 @@ export default function SpacingPage() {
       <p className="text-body-xs text-ink-muted mb-16">
         Cantos arredondados usados em botões, cards e inputs.
       </p>
-      <div className="rounded-lg border border-line overflow-hidden">
+      <div className="rounded-lg border border-line-subtle overflow-hidden">
         <div className="grid grid-cols-3 bg-card px-16 py-8">
           <span className="text-body-xs uppercase tracking-wide text-ink-muted">Nome</span>
           <span className="text-body-xs uppercase tracking-wide text-ink-muted">Exemplo</span>
@@ -48,7 +48,7 @@ export default function SpacingPage() {
         {radiusTokens.map((tok) => (
           <div
             key={tok.name}
-            className="grid grid-cols-3 items-center px-16 py-16 border-t border-line"
+            className="grid grid-cols-3 items-center px-16 py-16 border-t border-line-subtle"
           >
             <span className="text-body-sm text-ink font-mono">{tok.name}</span>
             <span

@@ -10,7 +10,7 @@ function TypeGroupTable({ group }: { group: TypeGroup }) {
           {group.sizePx}px / {(group.sizePx / 16).toFixed(2).replace(/0$/, "")}rem
         </p>
       </div>
-      <div className="rounded-lg border border-line overflow-hidden">
+      <div className="rounded-lg border border-line-subtle overflow-hidden">
         <div className="grid grid-cols-6 bg-card px-16 py-8">
           {["Nome", "Family", "Size", "Weight", "Line Height", "Letter Spacing"].map((h) => (
             <span key={h} className="text-body-xs uppercase tracking-wide text-ink-muted">
@@ -21,7 +21,7 @@ function TypeGroupTable({ group }: { group: TypeGroup }) {
         {group.rows.map((row) => (
           <div
             key={row.name}
-            className="grid grid-cols-6 items-center px-16 py-12 border-t border-line"
+            className="grid grid-cols-6 items-center px-16 py-12 border-t border-line-subtle"
           >
             <span className="text-body-xs text-ink font-mono">{row.name}</span>
             <span className="text-body-xs text-ink-muted">{row.family}</span>
@@ -35,7 +35,7 @@ function TypeGroupTable({ group }: { group: TypeGroup }) {
         ))}
       </div>
       <div
-        className="mt-12 p-16 rounded-lg bg-card border border-line"
+        className="mt-12 p-16 rounded-lg bg-card border border-line-subtle"
         style={{
           fontSize: group.sizePx,
           lineHeight: group.rows[0].lineHeight,

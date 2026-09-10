@@ -1,4 +1,7 @@
-import Link from "next/link";
+"use client";
+
+import { usePathname } from "next/navigation";
+import { Sidebar as DsSidebar, SidebarGroupLabel, SidebarItem } from "@brunosantossss/ds";
 
 const nav = [
   {
@@ -35,28 +38,30 @@ const nav = [
   },
 ];
 
+/**
+ * Menu de navegação do site de docs — dogfooding do próprio componente
+ * Sidebar do pacote (@brunosantossss/ds), em vez de um <nav> à mão à parte.
+ * Sem header/footer/collapsed (o site não precisa recolher o menu) — só
+ * SidebarGroupLabel + SidebarItem com `href`, que renderiza <a> (o Next
+ * ainda faz navegação client-side normalmente, sem next/link, porque o
+ * <a> aponta pra uma rota interna do próprio app).
+ */
 export function Sidebar() {
+  const pathname = usePathname();
   return (
-    <nav className="w-[240px] shrink-0 border-r border-line px-16 py-24 hidden md:block">
-      {nav.map((section) => (
-        <div key={section.group} className="mb-24">
-          <p className="text-body-xs uppercase tracking-wide text-ink-muted mb-8 px-8">
-            {section.group}
-          </p>
-          <ul className="flex flex-col gap-2">
+    <div className="hidden h-full shrink-0 md:block">
+      <DsSidebar>
+        {nav.map((section, i) => (
+          <div key={section.group} className="contents">
+            <SidebarGroupLabel className={i > 0 ? "mt-14" : undefined}>{section.group}</SidebarGroupLabel>
             {section.items.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="block px-8 py-8 rounded-md text-body-sm text-ink hover:bg-hover transition-colors"
-                >
-                  {item.label}
-                </Link>
-              </li>
+              <SidebarItem key={item.href} href={item.href} active={pathname === item.href}>
+                {item.label}
+              </SidebarItem>
             ))}
-          </ul>
-        </div>
-      ))}
-    </nav>
+          </div>
+        ))}
+      </DsSidebar>
+    </div>
   );
 }

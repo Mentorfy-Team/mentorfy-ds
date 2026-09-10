@@ -19,7 +19,7 @@ export default function SidebarItemPage() {
         description="Item de navegação usado na sidebar principal, com ícone, submenu expansível (caret), contador opcional (badge) e estado ativo."
       />
 
-      <div className="rounded-lg border border-line bg-card p-16 mb-32">
+      <div className="rounded-lg border border-line-subtle bg-card p-16 mb-32">
         <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto">
 {`import { SidebarItem } from "@brunosantossss/ds";
 
@@ -37,7 +37,7 @@ export default function SidebarItemPage() {
         </pre>
       </div>
 
-      <div className="max-w-[280px] flex flex-col gap-4 mb-32 rounded-lg border border-line bg-card p-8">
+      <div className="max-w-[280px] flex flex-col gap-4 mb-32 rounded-lg border border-line-subtle bg-card p-8">
         <SidebarItem icon={<GridIcon />}>Default</SidebarItem>
         <SidebarItem icon={<GridIcon />} active>
           Active
@@ -58,7 +58,7 @@ export default function SidebarItemPage() {
 
       <div className="mb-32">
         <h3 className="text-body-lg font-bold mb-12">Propriedades</h3>
-        <div className="rounded-lg border border-line overflow-hidden">
+        <div className="rounded-lg border border-line-subtle overflow-hidden">
           {[
             ["active", "boolean — fundo bg-surface + barra de destaque de 4px na cor da marca"],
             ["icon", "ReactNode — sempre visível, representa o destino da navegação (não é variante)"],
@@ -67,7 +67,7 @@ export default function SidebarItemPage() {
             ["badge", "number (opcional, contador — reutiliza o componente Badge). Mutuamente exclusivo com expandable"],
             ["disabled", "boolean"],
           ].map(([prop, value]) => (
-            <div key={prop} className="grid grid-cols-2 px-16 py-12 border-b border-line last:border-b-0">
+            <div key={prop} className="grid grid-cols-2 px-16 py-12 border-b border-line-subtle last:border-b-0">
               <span className="text-body-sm text-ink font-mono">{prop}</span>
               <span className="text-body-sm text-ink-muted font-mono">{value}</span>
             </div>

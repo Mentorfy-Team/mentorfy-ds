@@ -126,7 +126,7 @@ function InteractiveSidebarDemo({ initialCollapsed = false }: { initialCollapsed
   }
 
   return (
-    <div className="h-[640px] overflow-hidden">
+    <div className="flex h-[640px] items-center justify-center overflow-hidden bg-nav py-24">
       <Sidebar
         collapsed={collapsed}
         header={
@@ -148,9 +148,10 @@ function InteractiveSidebarDemo({ initialCollapsed = false }: { initialCollapsed
               <img src="/mentorfy-logo.svg" alt="Mentorfy" className="h-[19px] w-auto" />
               <button
                 type="button"
+                onClick={collapse}
                 className="flex h-[28px] w-[28px] items-center justify-center rounded-md bg-nav-chip text-nav-muted transition-colors hover:bg-hover hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-nav"
-                aria-label="Fechar"
-                title="Fecha a sidebar como overlay (mobile) — não faz parte deste demo"
+                aria-label="Fechar sidebar"
+                title="No produto real esse X fecharia a sidebar como overlay (mobile); aqui, pra sempre ter os dois sentidos animados, ele também recolhe"
               >
                 <CloseIcon />
               </button>
@@ -422,7 +423,7 @@ export default function SidebarPage() {
           (como no demo acima) ou agrupados com <code className="text-body-xs font-mono text-ink">SidebarSection</code>{" "}
           quando há muitos, como abaixo.
         </p>
-        <div className="rounded-lg border border-line-subtle p-24">
+        <div className="flex justify-center rounded-lg border border-line-subtle p-24">
           <SubmenuDemo />
         </div>
       </div>
@@ -775,7 +776,7 @@ export default function SidebarPage() {
         <ul className="text-body-sm text-ink-muted list-disc pl-20 flex flex-col gap-4">
           <li>O painel da sidebar usa o token bg-nav (mais escuro/frio que bg-page), pra o item Active (bg-surface) se destacar visualmente do fundo — assim como no Figma.</li>
           <li>SidebarGroupLabel separa os grupos de navegação (Gestão, Mentorias, Clientes, etc.), espelhando as seções da sidebar real do produto.</li>
-          <li>O botão &quot;Fechar&quot; (X) no header expandido é conceitualmente diferente do botão &quot;Recolher&quot; do rodapé: o primeiro fecharia a sidebar como overlay no mobile (fora do escopo deste componente), o segundo alterna collapsed — por isso só o segundo está funcional no demo acima.</li>
+          <li>No produto real, o botão &quot;Fechar&quot; (X) do header e o &quot;Recolher&quot; do rodapé têm significados diferentes (fechar como overlay no mobile vs. recolher pra ícone-only). Nos demos desta página os dois recolhem, pra sempre existir uma ação de abrir e uma de fechar animadas — ajuste conforme o caso de uso real da sua aplicação.</li>
           <li>Em modo colapsado não existe flyout de submenu ao passar o mouse — módulos com sub-páginas (como &quot;Alunos&quot;) mostram só o ícone; a navegação pro submenu exige expandir a sidebar primeiro.</li>
         </ul>
       </div>

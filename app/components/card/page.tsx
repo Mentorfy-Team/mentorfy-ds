@@ -13,7 +13,7 @@ export default function CardPage() {
         description="Contêiner usado para agrupar conteúdo relacionado, com título e ação de rodapé opcionais."
       />
 
-      <div className="rounded-lg border border-line bg-card p-16 mb-32">
+      <div className="rounded-lg border border-line-subtle bg-card p-16 mb-32">
         <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto">
 {`import { Card } from "@brunosantossss/ds";
 
@@ -38,14 +38,14 @@ export default function CardPage() {
 
       <div className="mb-32">
         <h3 className="text-body-lg font-bold mb-12">Propriedades</h3>
-        <div className="rounded-lg border border-line overflow-hidden">
+        <div className="rounded-lg border border-line-subtle overflow-hidden">
           {[
             ["style_", "default | bordered"],
             ["padding", "sm (16) | md (24) | lg (32)"],
             ["title", "string (opcional)"],
             ["footerLabel", "string (opcional, ação única de rodapé)"],
           ].map(([prop, value]) => (
-            <div key={prop} className="grid grid-cols-2 px-16 py-12 border-b border-line last:border-b-0">
+            <div key={prop} className="grid grid-cols-2 px-16 py-12 border-b border-line-subtle last:border-b-0">
               <span className="text-body-sm text-ink font-mono">{prop}</span>
               <span className="text-body-sm text-ink-muted font-mono">{value}</span>
             </div>

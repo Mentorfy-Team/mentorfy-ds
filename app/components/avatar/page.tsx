@@ -14,7 +14,7 @@ export default function AvatarPage() {
         description="Representação visual de um usuário, com iniciais ou placeholder, e indicador de status opcional."
       />
 
-      <div className="rounded-lg border border-line bg-card p-16 mb-32">
+      <div className="rounded-lg border border-line-subtle bg-card p-16 mb-32">
         <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto">
 {`import { Avatar } from "@brunosantossss/ds";
 
@@ -40,14 +40,14 @@ export default function AvatarPage() {
 
       <div className="mb-32">
         <h3 className="text-body-lg font-bold mb-12">Propriedades</h3>
-        <div className="rounded-lg border border-line overflow-hidden">
+        <div className="rounded-lg border border-line-subtle overflow-hidden">
           {[
             ["size", "xs (24) | sm (32) | md (40) | lg (48)"],
             ["type", "initials | placeholder"],
             ["status", "none | online | offline"],
             ["initials", "string (padrão: \"AB\")"],
           ].map(([prop, value]) => (
-            <div key={prop} className="grid grid-cols-2 px-16 py-12 border-b border-line last:border-b-0">
+            <div key={prop} className="grid grid-cols-2 px-16 py-12 border-b border-line-subtle last:border-b-0">
               <span className="text-body-sm text-ink font-mono">{prop}</span>
               <span className="text-body-sm text-ink-muted font-mono">{value}</span>
             </div>
