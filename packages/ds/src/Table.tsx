@@ -31,7 +31,12 @@ export type TableProps = HTMLAttributes<HTMLTableElement>;
  */
 export function Table({ className = "", children, ...props }: TableProps) {
   return (
-    <div className="overflow-x-auto overflow-y-hidden rounded-lg border border-line bg-card">
+    // border-line-subtle (não border-line): a Table é um bloco de conteúdo
+    // (como cards de doc, props tables e code blocks), não um componente
+    // interativo como Input/Select — a borda não deve competir visualmente
+    // com o conteúdo das linhas. Ver definição de --color-line-subtle em
+    // theme.css.
+    <div className="overflow-x-auto overflow-y-hidden rounded-lg border border-line-subtle bg-card">
       <table className={`w-full min-w-max border-collapse text-body-sm ${className}`} {...props}>
         {children}
       </table>
