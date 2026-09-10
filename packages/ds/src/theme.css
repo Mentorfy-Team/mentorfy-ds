@@ -65,6 +65,13 @@
   --color-brand-subtle: var(--color-brown-700); /* Primária — tom de apoio compartilhado (Pantone 2319 C), tint escuro — repontado de orange/900 para melhorar contraste de Badge/Avatar/Button ghost-hover */
 
   --color-line: var(--color-neutral-600); /* Secundária — Neutral Black C, tint */
+  /* Variante mais escura/sutil de --color-line: para divisórias e bordas
+     de blocos de CONTEÚDO (cards de doc, tabelas de props, code blocks) que
+     não devem competir visualmente com a borda de componentes interativos
+     de verdade (Input, Select, Card...) — essas continuam em --color-line.
+     Mesmo valor de --color-nav-line (#1E1E1E), mas como token semântico
+     próprio: nav-line é escopado à Sidebar, este aqui é de uso geral. */
+  --color-line-subtle: #1e1e1e;
 
   --color-ink: var(--color-neutral-50); /* Secundária — Warm Gray 5C, tint claro */
   --color-ink-muted: var(--color-neutral-500); /* Secundária — Warm Gray 5C (base) */

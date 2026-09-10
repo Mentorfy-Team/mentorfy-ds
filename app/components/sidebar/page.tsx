@@ -116,8 +116,8 @@ function AjudaBlock({ collapsed }: { collapsed?: boolean }) {
  * (página "❖ · Sidebar" no Bússola.DS): mesmos grupos, mesmos ícones
  * (extraídos vetor por vetor do Figma) e mesmo item ativo ("Indicações").
  */
-function HeroDemo() {
-  const [collapsed, setCollapsed] = useState(false);
+function InteractiveSidebarDemo({ initialCollapsed = false }: { initialCollapsed?: boolean }) {
+  const [collapsed, setCollapsed] = useState(initialCollapsed);
   const [alunosOpen, setAlunosOpen] = useState(false);
 
   function collapse() {
@@ -302,7 +302,7 @@ function PropsTable({
   rows: { prop: string; type: string; default?: string; description: string }[];
 }) {
   return (
-    <div className="rounded-lg border border-line overflow-hidden">
+    <div className="rounded-lg border border-line-subtle overflow-hidden">
       <div className="grid grid-cols-[1fr_1.3fr_0.7fr_2fr] gap-12 px-16 py-8 bg-card">
         {["Prop", "Tipo", "Default", "Descrição"].map((h) => (
           <span key={h} className="text-body-xs font-bold uppercase tracking-[0.5px] text-ink-muted">
@@ -311,7 +311,7 @@ function PropsTable({
         ))}
       </div>
       {rows.map((r) => (
-        <div key={r.prop} className="grid grid-cols-[1fr_1.3fr_0.7fr_2fr] gap-12 px-16 py-12 border-t border-line">
+        <div key={r.prop} className="grid grid-cols-[1fr_1.3fr_0.7fr_2fr] gap-12 px-16 py-12 border-t border-line-subtle">
           <span className="text-body-sm text-ink font-mono">{r.prop}</span>
           <span className="text-body-sm text-ink-muted font-mono">{r.type}</span>
           <span className="text-body-sm text-ink-muted font-mono">{r.default ?? "—"}</span>
@@ -332,7 +332,7 @@ function DoCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-lg border border-line overflow-hidden">
+    <div className="rounded-lg border border-line-subtle overflow-hidden">
       <div className="h-[160px] overflow-hidden bg-nav p-16">{children}</div>
       <div className="p-16">
         <span className="mb-4 inline-block text-body-xs font-bold uppercase tracking-[0.5px] text-success">
@@ -355,7 +355,7 @@ function DontCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-lg border border-line overflow-hidden">
+    <div className="rounded-lg border border-line-subtle overflow-hidden">
       <div className="h-[160px] overflow-hidden bg-nav p-16">{children}</div>
       <div className="p-16">
         <span className="mb-4 inline-block text-body-xs font-bold uppercase tracking-[0.5px] text-danger">
@@ -377,7 +377,7 @@ export default function SidebarPage() {
         description="Navegação principal do produto, alternando entre modo expandido (280px) e colapsado (88px, ícone-only). É um contêiner de layout — a navegação é composta com SidebarItem, SidebarGroupLabel e SidebarSubmenu, já que rota ativa e permissões dependem da aplicação. IA, ícones, cores e espaçamento espelham a sidebar real do produto no Figma, valor por valor."
       />
 
-      <div className="rounded-lg border border-line bg-card p-16 mb-32">
+      <div className="rounded-lg border border-line-subtle bg-card p-16 mb-32">
         <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto">
 {`import { Sidebar, SidebarItem, SidebarGroupLabel, SidebarSubmenu, SidebarSubItem } from "@brunosantossss/ds";
 
@@ -407,8 +407,8 @@ export default function SidebarPage() {
           menu no cabeçalho, já colapsada) pra ver a transição de largura ao vivo — e clique em &quot;Alunos&quot;
           pra ver o submenu abrir com o acordeão animado.
         </p>
-        <div className="rounded-lg border border-line overflow-hidden">
-          <HeroDemo />
+        <div className="rounded-lg border border-line-subtle overflow-hidden">
+          <InteractiveSidebarDemo />
         </div>
       </div>
 
@@ -422,8 +422,72 @@ export default function SidebarPage() {
           (como no demo acima) ou agrupados com <code className="text-body-xs font-mono text-ink">SidebarSection</code>{" "}
           quando há muitos, como abaixo.
         </p>
-        <div className="rounded-lg border border-line p-24">
+        <div className="rounded-lg border border-line-subtle p-24">
           <SubmenuDemo />
+        </div>
+      </div>
+
+      <div className="mb-48">
+        <h2 className="text-body-xl font-bold mb-8">Modo colapsado</h2>
+        <p className="text-body-sm text-ink-muted mb-24 max-w-[720px]">
+          Com <code className="text-body-xs font-mono text-ink">collapsed</code> a sidebar reduz pra 88px,
+          mostrando só os ícones centralizados — o header troca a logo pelo losango + botão de menu, o footer some
+          com o nome/cargo (só o avatar fica) e cada grupo passa a ser separado por uma linha fina em vez do label
+          de texto. Não existe flyout de submenu ao passar o mouse: módulos com sub-páginas (como &quot;Alunos&quot;)
+          mostram só o ícone, sem indicar visualmente que têm submenu — navegar até ele exige expandir a sidebar
+          primeiro. O demo abaixo já carrega colapsado; clique no ícone de menu no cabeçalho pra expandir.
+        </p>
+        <div className="rounded-lg border border-line-subtle overflow-hidden">
+          <InteractiveSidebarDemo initialCollapsed />
+        </div>
+      </div>
+
+      <div className="mb-48">
+        <h2 className="text-body-xl font-bold mb-8">Animações</h2>
+        <p className="text-body-sm text-ink-muted mb-24 max-w-[720px]">
+          A Sidebar tem duas animações, as duas 100% CSS (sem biblioteca, sem JS medindo altura) e as duas
+          desligadas automaticamente quando o usuário pede menos movimento no sistema (
+          <code className="text-body-xs font-mono text-ink">prefers-reduced-motion</code>).
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div className="rounded-lg border border-line-subtle p-16">
+            <p className="text-body-sm font-medium text-ink mb-4">Expandir / recolher</p>
+            <p className="text-body-xs text-ink-muted mb-12">
+              O <code className="font-mono">&lt;aside&gt;</code> anima a própria largura ao trocar a prop{" "}
+              <code className="font-mono">collapsed</code> — 300ms, curva{" "}
+              <code className="font-mono">cubic-bezier(0.25, 0.46, 0.45, 0.94)</code> (a mesma &quot;ease-out
+              quad&quot; do submenu, pra sensação consistente). Quem usa o componente só troca o boolean; a
+              transição é toda interna ao <code className="font-mono">Sidebar</code>.
+            </p>
+            <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto rounded-md bg-card p-12">
+{`className={\`... transition-[width]
+  duration-300
+  ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
+  \${collapsed ? "w-[88px]" : "w-[280px]"}\`}`}
+            </pre>
+          </div>
+          <div className="rounded-lg border border-line-subtle p-16">
+            <p className="text-body-sm font-medium text-ink mb-4">Abrir / fechar submenu</p>
+            <p className="text-body-xs text-ink-muted mb-12">
+              O painel do <code className="font-mono">SidebarSubmenu</code> anima via{" "}
+              <code className="font-mono">grid-template-rows</code> (0fr → 1fr, 380ms) — a técnica padrão pra
+              animar uma altura que o CSS não conhece de antemão. Cada sub-item entra com fade + slide (
+              <code className="font-mono">translateY -4px → 0</code>), com 45ms de atraso a mais por índice — dá o
+              efeito de cascata ao abrir.
+            </p>
+            <pre className="text-body-xs font-mono text-ink-muted overflow-x-auto rounded-md bg-card p-12">
+{`<div style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+     className="grid transition-[grid-template-rows] duration-[380ms]">
+  <div className="overflow-hidden">
+    {items.map((child, i) => (
+      <div style={{ animation: \`sidebar-item-in 260ms \${i * 45}ms both\` }}>
+        {child}
+      </div>
+    ))}
+  </div>
+</div>`}
+            </pre>
+          </div>
         </div>
       </div>
 
@@ -433,7 +497,7 @@ export default function SidebarPage() {
           Dimensões e tokens reais, extraídos direto do arquivo Figma via Plugin API (não estimados visualmente) — a
           fonte de verdade que corrigiu os bugs de espaçamento desta página em versões anteriores.
         </p>
-        <div className="rounded-lg border border-line bg-card p-24 mb-16 flex justify-center overflow-x-auto">
+        <div className="rounded-lg border border-line-subtle bg-card p-24 mb-16 flex justify-center overflow-x-auto">
           <svg width="560" height="300" viewBox="0 0 560 300" fontFamily="var(--font-sans)">
             <rect x="20" y="10" width="200" height="280" rx="10" fill="var(--color-nav)" stroke="var(--color-nav-line)" />
             <rect x="20" y="10" width="200" height="46" fill="none" stroke="var(--color-brand)" strokeDasharray="3 3" />
@@ -471,9 +535,10 @@ export default function SidebarPage() {
             { prop: "active bar", type: "w-[4px] · bg-brand", description: "Barra de destaque à esquerda do item ativo, dentro do próprio raio (rounded-l-md)." },
             { prop: "group label", type: "mt-14 · pt-4 · pb-6", description: "Espaço acima do label de grupo e padding interno — 11px/leading-[16.5px]/tracking-[1.2px]." },
             { prop: "collapsed divider", type: "mt-14 · mb-8 · mx-4", description: "Linha entre grupos na colapsada — recuada 4px de cada lado, não simétrica (14px antes, 8px depois)." },
-            { prop: "border", type: "border-nav-line · #1E1E1E", description: "Borda direita do painel e divisórias do header/footer — mais escura que a border-line genérica do DS." },
+            { prop: "border", type: "border-nav-line · #1E1E1E", description: "Borda direita do painel e divisórias do header/footer — mais escura que --color-line (#6F6B6B), o token de borda padrão usado no resto do DS." },
             { prop: "icon-button chip", type: "bg-nav-chip · #1A1A1A", description: "Fundo dos botões-ícone do header/footer (fechar, recolher, expandir), 28×28px, rounded-md." },
             { prop: "submenu indent", type: "pl-24 (trigger) · pl-[14px] (sub-item)", description: "Recuo do painel do submenu e padding esquerdo de cada SidebarSubItem." },
+            { prop: "expand/collapse animation", type: "width · 300ms", description: "Transição de largura ao trocar collapsed — mesma curva cubic-bezier(0.25,0.46,0.45,0.94) do submenu, ver seção Animações." },
             { prop: "submenu animation", type: "grid-rows [0fr→1fr] · 380ms", description: "Expansão via CSS grid-template-rows, sem JS medindo altura. Curva cubic-bezier(0.25,0.46,0.45,0.94)." },
             { prop: "submenu item fade", type: "sidebar-item-in · 260ms · 45ms/item", description: "Fade + slide de cada filho ao abrir: opacity 0→1, translateY -4px→0, stagger 45ms por índice." },
           ]}
@@ -516,7 +581,7 @@ export default function SidebarPage() {
                 body: "A animação do submenu e as transições de largura/cor encolhem pra ~0ms quando o usuário pede menos movimento no sistema.",
               },
             ].map((item) => (
-              <div key={item.title} className="rounded-lg border border-line p-16">
+              <div key={item.title} className="rounded-lg border border-line-subtle p-16">
                 <p className="text-body-sm font-medium text-ink mb-4">{item.title}</p>
                 <p className="text-body-xs text-ink-muted">{item.body}</p>
               </div>
@@ -545,7 +610,7 @@ export default function SidebarPage() {
                 body: "Ao abrir/fechar via teclado, o foco deve continuar no trigger (já é o caso por padrão) — evite mover o foco pro primeiro sub-item automaticamente.",
               },
             ].map((item) => (
-              <div key={item.title} className="rounded-lg border border-line p-16">
+              <div key={item.title} className="rounded-lg border border-line-subtle p-16">
                 <p className="text-body-sm font-medium text-danger mb-4">{item.title}</p>
                 <p className="text-body-xs text-ink-muted">{item.body}</p>
               </div>
