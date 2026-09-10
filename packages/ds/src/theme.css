@@ -80,12 +80,21 @@
 
   --color-accent-teal: var(--color-teal-500); /* Secundária — Pantone 4168 C */
 
-  /* ---------- Spacing (substitui a escala padrão do Tailwind) ---------- */
+  /* ---------- Spacing (substitui a escala padrão do Tailwind) ----------
+     ATENÇÃO: esta escala é uma allowlist — qualquer utilitário de espaçamento
+     (p-N, m-N, gap-N etc.) cujo N não esteja listado aqui NÃO gera "Npx".
+     O Tailwind v4 cai de volta pra sua escala default em rem (onde N=6 vira
+     1.5rem/24px e N=14 vira 3.5rem/56px, não "6px"/"14px"), criando um bug
+     silencioso — foi o caso de mt-14/pb-6 na Sidebar, que renderizavam
+     56px/24px em vez dos 14px/6px do Figma. Ao adicionar um valor novo de
+     espaçamento, sempre conferir se o número já existe aqui embaixo. */
   --spacing-0: 0px;
   --spacing-2: 2px;
   --spacing-4: 4px;
+  --spacing-6: 6px;
   --spacing-8: 8px;
   --spacing-12: 12px;
+  --spacing-14: 14px;
   --spacing-16: 16px;
   --spacing-20: 20px;
   --spacing-24: 24px;

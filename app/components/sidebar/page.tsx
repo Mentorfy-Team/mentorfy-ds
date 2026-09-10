@@ -103,7 +103,7 @@ export default function SidebarPage() {
       <div className="mb-32 flex flex-wrap gap-24">
         <div>
           <h3 className="text-body-lg font-bold mb-12">Expanded</h3>
-          <div className="h-[720px] overflow-hidden rounded-lg border border-line">
+          <div className="h-[720px] overflow-hidden">
             <Sidebar
               header={
                 <div className="flex w-full items-center justify-between">
@@ -175,7 +175,7 @@ export default function SidebarPage() {
 
         <div>
           <h3 className="text-body-lg font-bold mb-12">Collapsed</h3>
-          <div className="h-[720px] overflow-hidden rounded-lg border border-line">
+          <div className="h-[720px] overflow-hidden">
             <Sidebar
               collapsed
               header={
