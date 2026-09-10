@@ -37,21 +37,24 @@ export function SidebarItem({
   children,
   ...props
 }: SidebarItemProps) {
+  // Sem `children`, é o item icon-only da sidebar colapsada: centraliza o
+  // ícone em vez de alinhar à esquerda com um espaço reservado pro texto.
+  const hasLabel = children != null && children !== false;
   return (
     <button
       type="button"
       disabled={disabled}
-      className={`relative flex h-[40px] w-full shrink-0 items-center gap-8 rounded-md pl-12 pr-12 text-body-sm font-medium transition-colors disabled:opacity-40 disabled:pointer-events-none ${
-        active ? "bg-surface text-ink-brand" : "text-ink hover:bg-hover"
-      } ${className}`}
+      className={`relative flex h-[40px] w-full shrink-0 items-center gap-8 rounded-md text-body-sm font-medium transition-colors disabled:opacity-40 disabled:pointer-events-none ${
+        hasLabel ? "justify-start pl-12 pr-12" : "justify-center px-0"
+      } ${active ? "bg-surface text-ink-brand" : "text-ink hover:bg-hover"} ${className}`}
       {...props}
     >
       {active && (
         <span className="absolute left-0 top-0 h-full w-[4px] rounded-l-md bg-brand" />
       )}
       {icon}
-      <span className="flex-1 text-left">{children}</span>
-      {expandable ? (
+      {hasLabel && <span className="flex-1 text-left">{children}</span>}
+      {hasLabel && expandable ? (
         <svg
           width="12"
           height="6"

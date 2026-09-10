@@ -26,7 +26,18 @@ import {
   PrecisaDeAjudaIcon,
   CollapseIcon,
   CloseIcon,
+  MenuIcon,
+  MentorfyMarkIcon,
 } from "./icons";
+
+// Na sidebar colapsada, os grupos não têm label — são separados por uma
+// linha divisória fina (só existe nessa variante; a expandida usa o
+// respiro do label de texto). Contagem por grupo confere com a IA real:
+// Gestão(5) · Mentorias(3) · Clientes(2) · AI Studio(1) · Brand Studio(1)
+// · Copiloto(2) · Configurações(4) · Minha Conta(3) · Ajuda(2).
+function CollapsedDivider() {
+  return <div className="my-14 h-px w-full shrink-0 bg-line" />;
+}
 
 // Espelha a IA real da sidebar do produto (página "❖ · Sidebar" no Bússola.DS):
 // mesmos grupos, mesmos itens, mesmo item ativo ("Indicações"), mesmo estado
@@ -52,28 +63,15 @@ function DemoNavTop() {
   );
 }
 
-const collapsedIcons = [
-  PainelIcon,
-  AlunosIcon,
-  RelatoriosIcon,
-  ReunioesIcon,
-  IndicacoesIcon,
-  MeusProdutosIcon,
-  VitrineIcon,
-  AprovacoesIcon,
-  MeusClientesIcon,
-  GruposIcon,
-  AiStudioIcon,
-  BrandStudioIcon,
-  MeuCopilotoIcon,
-  CopilotoDoAlunoIcon,
-  EquipeIcon,
-  DominioIcon,
-  IntegracoesIcon,
-  SegurancaIcon,
-  PerfilIcon,
-  SenhaIcon,
-  AssinaturaIcon,
+const collapsedGroups: { icons: (typeof PainelIcon)[]; activeIndex?: number }[] = [
+  { icons: [PainelIcon, AlunosIcon, RelatoriosIcon, ReunioesIcon, IndicacoesIcon], activeIndex: 4 },
+  { icons: [MeusProdutosIcon, VitrineIcon, AprovacoesIcon] },
+  { icons: [MeusClientesIcon, GruposIcon] },
+  { icons: [AiStudioIcon] },
+  { icons: [BrandStudioIcon] },
+  { icons: [MeuCopilotoIcon, CopilotoDoAlunoIcon] },
+  { icons: [EquipeIcon, DominioIcon, IntegracoesIcon, SegurancaIcon] },
+  { icons: [PerfilIcon, SenhaIcon, AssinaturaIcon] },
 ];
 
 export default function SidebarPage() {
@@ -175,15 +173,39 @@ export default function SidebarPage() {
           <div className="h-[720px] overflow-hidden rounded-lg border border-line">
             <Sidebar
               collapsed
+              header={
+                <div className="flex w-full items-center justify-between">
+                  <MentorfyMarkIcon />
+                  <button
+                    type="button"
+                    className="flex h-[28px] w-[28px] items-center justify-center rounded-md text-ink-muted transition-colors hover:bg-hover hover:text-ink"
+                    aria-label="Expandir"
+                  >
+                    <MenuIcon />
+                  </button>
+                </div>
+              }
               footer={
                 <div className="flex justify-center">
                   <Avatar size="sm" initials="CM" status="online" />
                 </div>
               }
             >
-              {collapsedIcons.map((IconCmp, i) => (
-                <SidebarItem key={i} active={i === 4} title={i === 4 ? "Indicações" : undefined} icon={<IconCmp />} />
+              {collapsedGroups.map((group, gi) => (
+                <div key={gi} className="contents">
+                  {gi > 0 && <CollapsedDivider />}
+                  {group.icons.map((IconCmp, i) => (
+                    <SidebarItem
+                      key={i}
+                      active={group.activeIndex === i}
+                      icon={<IconCmp />}
+                    />
+                  ))}
+                </div>
               ))}
+              <CollapsedDivider />
+              <SidebarItem icon={<TutoriaisIcon />} className="text-nav-muted" />
+              <SidebarItem icon={<PrecisaDeAjudaIcon />} className="text-nav-muted" />
             </Sidebar>
           </div>
         </div>
