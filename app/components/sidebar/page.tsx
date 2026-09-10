@@ -32,11 +32,14 @@ import {
 
 // Na sidebar colapsada, os grupos não têm label — são separados por uma
 // linha divisória fina (só existe nessa variante; a expandida usa o
-// respiro do label de texto). Contagem por grupo confere com a IA real:
-// Gestão(5) · Mentorias(3) · Clientes(2) · AI Studio(1) · Brand Studio(1)
-// · Copiloto(2) · Configurações(4) · Minha Conta(3) · Ajuda(2).
+// respiro do label de texto). Espaçamento exato do Figma: 14px antes da
+// linha, linha de 1px (cor nav-line), 8px depois — não simétrico — e a
+// linha é recuada 4px de cada lado (não vai de ponta a ponta da coluna).
+// Contagem por grupo confere com a IA real: Gestão(5) · Mentorias(3) ·
+// Clientes(2) · AI Studio(1) · Brand Studio(1) · Copiloto(2) ·
+// Configurações(4) · Minha Conta(3).
 function CollapsedDivider() {
-  return <div className="my-14 h-px w-full shrink-0 bg-line" />;
+  return <div className="mx-4 mt-14 mb-8 h-px shrink-0 bg-nav-line" />;
 }
 
 // Espelha a IA real da sidebar do produto (página "❖ · Sidebar" no Bússola.DS):
@@ -108,7 +111,7 @@ export default function SidebarPage() {
                   <img src="/mentorfy-logo.svg" alt="Mentorfy" className="h-[19px] w-auto" />
                   <button
                     type="button"
-                    className="flex h-[28px] w-[28px] items-center justify-center rounded-md text-ink-muted transition-colors hover:bg-hover hover:text-ink"
+                    className="flex h-[28px] w-[28px] items-center justify-center rounded-md bg-nav-chip text-nav-muted transition-colors hover:bg-hover hover:text-ink"
                     aria-label="Fechar"
                   >
                     <CloseIcon />
@@ -124,7 +127,7 @@ export default function SidebarPage() {
                   </div>
                   <button
                     type="button"
-                    className="flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-md text-ink-muted transition-colors hover:bg-hover hover:text-ink"
+                    className="flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-md bg-nav-chip text-nav-muted transition-colors hover:bg-hover hover:text-ink"
                     aria-label="Recolher"
                   >
                     <CollapseIcon />
@@ -156,13 +159,15 @@ export default function SidebarPage() {
               <SidebarItem icon={<PerfilIcon />}>Perfil</SidebarItem>
               <SidebarItem icon={<SenhaIcon />}>Senha</SidebarItem>
               <SidebarItem icon={<AssinaturaIcon />}>Assinatura</SidebarItem>
-              <div className="mt-auto flex flex-col gap-0 border-t border-line pt-12">
-                <SidebarItem icon={<TutoriaisIcon />} className="text-nav-muted">
-                  Tutoriais
-                </SidebarItem>
-                <SidebarItem icon={<PrecisaDeAjudaIcon />} className="text-nav-muted">
-                  Precisa de ajuda?
-                </SidebarItem>
+              <div className="pt-2">
+                <div className="flex flex-col gap-0 border-t border-nav-line pt-12">
+                  <SidebarItem icon={<TutoriaisIcon />} className="text-nav-muted">
+                    Tutoriais
+                  </SidebarItem>
+                  <SidebarItem icon={<PrecisaDeAjudaIcon />} className="text-nav-muted">
+                    Precisa de ajuda?
+                  </SidebarItem>
+                </div>
               </div>
             </Sidebar>
           </div>
@@ -178,7 +183,7 @@ export default function SidebarPage() {
                   <MentorfyMarkIcon />
                   <button
                     type="button"
-                    className="flex h-[28px] w-[28px] items-center justify-center rounded-md text-ink-muted transition-colors hover:bg-hover hover:text-ink"
+                    className="flex h-[28px] w-[28px] items-center justify-center rounded-md bg-nav-chip text-nav-muted transition-colors hover:bg-hover hover:text-ink"
                     aria-label="Expandir"
                   >
                     <MenuIcon />
@@ -203,9 +208,12 @@ export default function SidebarPage() {
                   ))}
                 </div>
               ))}
-              <CollapsedDivider />
-              <SidebarItem icon={<TutoriaisIcon />} className="text-nav-muted" />
-              <SidebarItem icon={<PrecisaDeAjudaIcon />} className="text-nav-muted" />
+              <div className="pt-2">
+                <div className="flex flex-col gap-0 border-t border-nav-line pt-12">
+                  <SidebarItem icon={<TutoriaisIcon />} className="text-nav-muted" />
+                  <SidebarItem icon={<PrecisaDeAjudaIcon />} className="text-nav-muted" />
+                </div>
+              </div>
             </Sidebar>
           </div>
         </div>

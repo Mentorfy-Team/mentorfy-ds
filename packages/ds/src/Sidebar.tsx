@@ -18,13 +18,21 @@ export interface SidebarProps {
 export function Sidebar({ collapsed = false, header, footer, children, className = "" }: SidebarProps) {
   return (
     <aside
-      className={`flex h-full flex-col border-r border-line bg-nav transition-[width] ${
+      className={`flex h-full flex-col border-r border-nav-line bg-nav transition-[width] ${
         collapsed ? "w-[88px]" : "w-[280px]"
       } ${className}`}
     >
-      {header && <div className="flex h-[64px] shrink-0 items-center border-b border-line px-24">{header}</div>}
+      {header && (
+        <div
+          className={`flex h-[64px] shrink-0 items-center border-b border-nav-line ${
+            collapsed ? "px-12" : "px-24"
+          }`}
+        >
+          {header}
+        </div>
+      )}
       <nav className="flex flex-1 flex-col gap-0 overflow-y-auto p-12">{children}</nav>
-      {footer && <div className="flex h-[72px] shrink-0 items-center border-t border-line px-20">{footer}</div>}
+      {footer && <div className="flex h-[72px] shrink-0 items-center border-t border-nav-line px-20">{footer}</div>}
     </aside>
   );
 }
@@ -50,7 +58,9 @@ export interface SidebarGroupLabelProps {
  */
 export function SidebarGroupLabel({ children, className = "" }: SidebarGroupLabelProps) {
   return (
-    <p className={`px-8 pt-4 pb-6 text-[11px] font-bold uppercase tracking-[1.2px] text-nav-muted ${className}`}>
+    <p
+      className={`px-8 pt-4 pb-6 text-[11px] leading-[16.5px] font-bold uppercase tracking-[1.2px] text-nav-muted ${className}`}
+    >
       {children}
     </p>
   );

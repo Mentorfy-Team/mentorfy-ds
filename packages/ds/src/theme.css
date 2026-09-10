@@ -136,4 +136,16 @@
      não vinculado a nenhuma variável lá, por isso não é um alias de
      color/neutral/*. */
   --color-nav-muted: #7a7a7a;
+
+  /* Linha/borda usada só na sidebar (borda direita do painel, divisória
+     do header/footer, linha entre grupos da colapsada) — valor direto no
+     Figma (#1E1E1E), bem mais escuro/sutil que --color-line (#6F6B6B,
+     usado no resto do DS). Não são o mesmo token: usar border-line aqui
+     deixa as bordas da sidebar visivelmente mais claras que no Figma. */
+  --color-nav-line: #1e1e1e;
+
+  /* Fundo dos botões-ícone da sidebar (fechar/recolher/expandir no
+     header e footer) — valor direto no Figma (#1A1A1A), um cinza neutro
+     puro, diferente do --color-surface (#1A1009, com tom quente). */
+  --color-nav-chip: #1a1a1a;
 }
