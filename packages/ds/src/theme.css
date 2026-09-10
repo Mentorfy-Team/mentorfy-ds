@@ -180,19 +180,20 @@
   }
 }
 
-/* Fade puro (sem slide) usado pelo conteúdo do <nav> da Sidebar ao trocar
-   entre os dois conjuntos de itens (ícone-only colapsado vs. com label
-   expandido) — ver Sidebar.tsx. Sem isso, o texto do modo expandido
-   aparecia instantaneamente por cima do painel ainda estreito (mid-
-   transição de width), ficando visualmente amontoado/cortado até o
-   painel terminar de abrir. Com o fade com delay, o texto só aparece
-   quando o painel já está largo o bastante pra caber. */
-@keyframes sidebar-content-fade {
+/* Slide lateral + fade usado pelo conteúdo do nav e do footer da Sidebar
+   ao trocar entre os dois conjuntos (ícone-only colapsado vs. com label
+   expandido) — ver Sidebar.tsx. O texto entra deslizando da esquerda,
+   junto com a mesma curva/duração aproximada da transição de largura do
+   <aside>, em vez de só aparecer estático (o que ficava amontoado por
+   cima do painel ainda estreito). */
+@keyframes sidebar-label-slide {
   from {
     opacity: 0;
+    transform: translateX(-8px);
   }
   to {
     opacity: 1;
+    transform: translateX(0);
   }
 }
 

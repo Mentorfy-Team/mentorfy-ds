@@ -33,19 +33,31 @@ export function Sidebar({ collapsed = false, header, footer, children, className
       )}
       <nav aria-label="Sidebar" className="flex flex-1 flex-col gap-0 overflow-x-hidden overflow-y-auto p-12">
         {/* key={collapsed} força remount ao trocar entre os dois conjuntos de
-            itens (ícone-only vs. com label) — sem isso o texto do modo
-            expandido aparecia instantâneo por cima do painel ainda estreito
-            (width em transição), ficando amontoado. O fade com delay só
-            revela o conteúdo quando o painel já abriu o suficiente. */}
+            itens (ícone-only vs. com label). O texto entra deslizando +
+            fade — na mesma direção e com a mesma curva da transição de
+            largura do <aside> — em vez de só aparecer estático por cima
+            do painel ainda estreito. */}
         <div
           key={collapsed ? "collapsed" : "expanded"}
           className="flex flex-1 flex-col gap-0"
-          style={{ animation: `sidebar-content-fade 260ms ease-out ${collapsed ? "0ms" : "200ms"} both` }}
+          style={{ animation: "sidebar-label-slide 400ms ease-[cubic-bezier(0.25,0.46,0.45,0.94)] both" }}
         >
           {children}
         </div>
       </nav>
-      {footer && <div className="flex h-[72px] shrink-0 items-center border-t border-nav-line px-20">{footer}</div>}
+      {footer && (
+        <div className="flex h-[72px] shrink-0 items-center overflow-hidden border-t border-nav-line px-20">
+          {/* Mesmo tratamento do nav — o footer também troca de conteúdo
+              (avatar só vs. avatar + nome/cargo + botão) ao colapsar/expandir. */}
+          <div
+            key={collapsed ? "collapsed" : "expanded"}
+            className="flex w-full items-center"
+            style={{ animation: "sidebar-label-slide 400ms ease-[cubic-bezier(0.25,0.46,0.45,0.94)] both" }}
+          >
+            {footer}
+          </div>
+        </div>
+      )}
     </aside>
   );
 }
