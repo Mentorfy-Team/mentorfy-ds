@@ -81,7 +81,12 @@ export function Sidebar() {
     <div className="hidden h-full shrink-0 md:block">
       <DsSidebar
         header={
-          <div className="flex h-36 w-full items-center gap-8 rounded-md bg-nav-chip px-12">
+          // h-[36px] (não h-36): 36 não está na allowlist de spacing do
+          // theme.css, então caía no fallback padrão do Tailwind em rem
+          // (144px) — o mesmo tipo de bug já visto no h-44/h-56/h-64 da
+          // Table. Aqui, como é só esse campo de busca, um valor
+          // arbitrário resolve sem precisar cadastrar um token novo.
+          <div className="flex h-[36px] w-full items-center gap-8 rounded-md bg-nav-chip px-12">
             <SearchIcon />
             <input
               value={query}
